@@ -2,36 +2,55 @@
 
 import Link from 'next/link'
 import { useLanguage } from '@/hooks/useLanguage'
+import { FaGithub, FaLinkedinIn, FaInstagram } from 'react-icons/fa'
 
 export default function Footer() {
   const { t } = useLanguage()
   const currentYear = new Date().getFullYear()
 
-  const footerLinks = [
-    { href: '/', label: t('nav.home') },
-    { href: '/projects', label: t('nav.projects') },
-    { href: '/about', label: t('nav.about') },
-    { href: '/contact', label: t('nav.contact') },
+  const socialLinks = [
+    {
+      href: 'https://github.com/your-github', // ganti dengan akunmu
+      label: 'GitHub',
+      icon: <FaGithub />,
+    },
+    {
+      href: 'https://www.linkedin.com/in/your-linkedin', // ganti dengan akunmu
+      label: 'LinkedIn',
+      icon: <FaLinkedinIn />,
+    },
+    {
+      href: 'https://www.instagram.com/your-instagram', // ganti dengan akunmu
+      label: 'Instagram',
+      icon: <FaInstagram />,
+    },
   ]
 
   return (
     <footer className="border-t border-dark-700 bg-dark-800/50">
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-8">
-            {footerLinks.map((link) => (
+          {/* Icon social media */}
+          <div className="flex items-center gap-6">
+            {socialLinks.map(({ href, label, icon }) => (
               <Link
-                key={link.href}
-                href={link.href}
-                className="text-gray-400 hover:text-white transition-colors text-sm"
+                key={label}
+                href={href}
+                aria-label={label}
+                target="_blank"
+                rel="noreferrer"
+                className="p-2 rounded-full border border-gray-500 text-gray-300
+                           hover:text-white hover:border-white transition-colors
+                           flex items-center justify-center text-xl"
               >
-                {link.label}
+                {icon}
               </Link>
             ))}
           </div>
 
-          <div className="text-gray-500 text-sm">
-            © {currentYear} John Developer. {t('footer.rights')}
+          {/* Text hak cipta */}
+          <div className="text-gray-500 text-sm text-center md:text-right">
+            © {currentYear} Chandra Putra. {t('footer.rights')}
           </div>
         </div>
       </div>
