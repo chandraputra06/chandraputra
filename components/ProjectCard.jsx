@@ -1,56 +1,54 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useLanguage } from '@/hooks/useLanguage'
+import Image from 'next/image'
+import Link from 'next/link'
 
+/**
+ * @typedef {Object} Project
+ * @property {string} id
+ * @property {string} title
+ * @property {string} description
+ * @property {string[]} tech
+ * @property {string} [image]
+ */
+
+/**
+ * @param {{ project: Project }} props
+ */
 export default function ProjectCard({ project }) {
-    const { t } = useLanguage()
-
     return (
-        <motion.div
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-            className="group relative border border-dark-700 rounded-2xl p-6 hover:border-accent-500/50 transition-all duration-300 bg-dark-800/50"
-        >
-            {/* Glow effect on hover */}
-            <div className="absolute inset-0 rounded-2xl bg-accent-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-            <div className="relative z-10">
-                <div className="flex items-start justify-between mb-4">
-                    <div>
-                        <span className="text-xs text-gray-500 uppercase tracking-wider">
-                            {t(`projects.categories.${project.category}`)}
-                        </span>
-                        <h3 className="text-2xl font-bold mt-2 mb-1">{project.title}</h3>
-                        <p className="text-sm text-gray-500">Dev #{project.devNumber}</p>
-                    </div>
+        <article className="group flex h-full flex-col rounded-2xl border border-dark-700 bg-dark-800/60 p-4 transition-transform transition-colors hover:-translate-y-1 hover:border-accent-500/60">
+            {project.image && (
+                <div className="relative mb-4 h-48 w-full overflow-hidden rounded-xl bg-dark-900">
+                    <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
                 </div>
+            )}
 
-                <p className="text-gray-400 mb-4 line-clamp-2">{project.description}</p>
-
-                <div className="flex flex-wrap gap-2 mb-4">
-                    {project.stack.map((tech) => (
+            <div className="flex flex-1 flex-col gap-3">
+                <h3 className="text-xl font-semibold">{project.title}</h3>
+                <p className="flex-1 text-sm text-gray-400">{project.description}</p>
+                <div className="flex flex-wrap gap-2 text-[11px] text-gray-400">
+                    {project.tech.map((item) => (
                         <span
-                            key={tech}
-                            className="px-3 py-1 bg-dark-700 rounded-full text-xs text-gray-300"
+                            key={item}
+                            className="rounded-full bg-dark-900 px-3 py-1 text-xs"
                         >
-                            {tech}
+                            {item}
                         </span>
                     ))}
                 </div>
-
-                {project.href && (
-                    <a
-                        href={project.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-accent-500 hover:text-accent-600 text-sm font-medium inline-flex items-center gap-2 group"
-                    >
-                        {t('projects.viewProject')}
-                        <span className="group-hover:translate-x-1 transition-transform">→</span>
-                    </a>
-                )}
+                <Link
+                    href={`/projects/${project.id}`}
+                    className="mt-3 text-sm font-medium text-accent-500 hover:text-accent-600"
+                >
+                    Detail proyek →
+                </Link>
             </div>
-        </motion.div>
+        </article>
     )
 }

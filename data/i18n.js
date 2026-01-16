@@ -8,14 +8,14 @@ export const dictionary = {
     },
     home: {
       badge: 'Tersedia untuk proyek baru',
-      subtitle: 'PENGEMBANG FRONTEND WEB BERPENGALAMAN',
+      subtitle: 'BACKEND ENTHUSIAST YANG SELALU BELAJAR HAL BARU',
       contactButton: 'Hubungi Saya',
       techStack: 'Tech Stack',
       whoAmI: {
         title: 'Siapa Saya?',
-        p1: 'Saya adalah frontend developer dengan passion dalam menciptakan pengalaman web yang indah dan fungsional. Dengan pengalaman lebih dari 5 tahun di industri, saya telah bekerja dengan berbagai klien dan proyek.',
-        p2: 'Saya percaya pada pentingnya kode yang bersih, desain yang user-friendly, dan solusi yang scalable. Setiap proyek adalah kesempatan untuk belajar dan menciptakan sesuatu yang luar biasa.',
-      },
+         p1: 'Saya Chandra Putra, seorang mahasiswa yang sedang mendalami backend development dan senang membangun logika aplikasi di balik layar.',
+        p2: 'Saya selalu ingin belajar hal baru mulai dari konsep backend hingga fullstack development agar bisa memahami alur aplikasi dari tampilan hingga database dan menjadi developer yang terus berkembang.',
+    },
       projects: {
         title: 'Proyek',
         viewAll: 'Lihat Semua',
@@ -95,14 +95,14 @@ export const dictionary = {
     },
     home: {
       badge: 'Available for new projects',
-      subtitle: 'EXPERIENCED FRONTEND WEB DEVELOPER',
+      subtitle: 'BACKEND ENTHUSIAST WHO’S ALWAYS LEARNING NEW THINGS',
       contactButton: 'Contact Me',
       techStack: 'Tech Stack',
       whoAmI: {
         title: 'Who am I?',
-        p1: 'I am a frontend developer with a passion for creating beautiful and functional web experiences. With over 5 years of experience in the industry, I have worked with various clients and projects.',
-        p2: 'I believe in the importance of clean code, user-friendly design, and scalable solutions. Every project is an opportunity to learn and create something amazing.',
-      },
+        p1: "I'm Chandra Putra, a student diving deep into backend development and enjoying building the logic that runs behind the scenes.",
+        p2: "I’m always excited to learn new things—from backend concepts to fullstack development—so I can understand the whole flow from UI to database and keep growing as a developer.",
+    },
       projects: {
         title: 'Projects',
         viewAll: 'View All',
