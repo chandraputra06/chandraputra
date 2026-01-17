@@ -3,7 +3,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
 export const metadata = {
-  title: 'Portfolio - Frontend Developer',
+  title: 'Portfolio - Chandra Putra',
   description: 'Experienced frontend web developer specializing in modern web applications',
 }
 

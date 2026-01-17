@@ -1,40 +1,31 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { motion } from 'framer-motion'
 import { useLanguage } from '@/hooks/useLanguage'
+import { useEffect, useState } from 'react'
 
 export default function Navbar() {
   const pathname = usePathname()
   const { lang, setLang, t } = useLanguage()
-
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
-
-    handleScroll() // set state sesuai posisi scroll saat pertama render
+    handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
-
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const navLinks = useMemo(
-    () => [
-      { href: '/', label: t('nav.home') },
-      { href: '/projects', label: t('nav.projects') },
-      { href: '/about', label: t('nav.about') },
-      { href: '/contact', label: t('nav.contact') },
-    ],
-    [t]
-  )
+  const navLinks = [
+    { href: '/', label: t('nav.home') },
+    { href: '/projects', label: t('nav.projects') },
+    { href: '/about', label: t('nav.about') },
+    { href: '/contact', label: t('nav.contact') },
+  ]
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
+    <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? 'bg-dark-900/95 backdrop-blur-sm border-b border-dark-700'
@@ -51,23 +42,17 @@ export default function Navbar() {
             <div className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => {
                 const active = pathname === link.href
-
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`relative transition-colors hover:text-accent-500 ${
+                    className={`relative text-sm transition-colors hover:text-accent-500 ${
                       active ? 'text-white' : 'text-gray-400'
                     }`}
                   >
                     {link.label}
-
                     {active && (
-                      <motion.div
-                        layoutId="navbar-indicator"
-                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent-500"
-                        transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                      />
+                      <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent-500" />
                     )}
                   </Link>
                 )
@@ -86,9 +71,7 @@ export default function Navbar() {
               >
                 ID
               </button>
-
               <span className="text-gray-700">|</span>
-
               <button
                 type="button"
                 onClick={() => setLang('en')}
@@ -104,6 +87,6 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-    </motion.nav>
+    </nav>
   )
 }

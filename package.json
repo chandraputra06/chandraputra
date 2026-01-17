@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "aos": "^2.3.4",
-    "framer-motion": "^12.26.2",
     "next": "16.1.2",
     "react": "19.2.3",
     "react-dom": "19.2.3",

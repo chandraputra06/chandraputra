@@ -10,17 +10,17 @@ export default function Footer() {
 
   const socialLinks = [
     {
-      href: 'https://github.com/your-github', // ganti dengan akunmu
+      href: 'https://github.com/chandraputra', // ganti kalau username beda
       label: 'GitHub',
       icon: <FaGithub />,
     },
     {
-      href: 'https://www.linkedin.com/in/your-linkedin', // ganti dengan akunmu
+      href: 'https://www.linkedin.com/in/chandraputra', // ganti kalau username beda
       label: 'LinkedIn',
       icon: <FaLinkedinIn />,
     },
     {
-      href: 'https://www.instagram.com/your-instagram', // ganti dengan akunmu
+      href: 'https://www.instagram.com/chandraputra', // ganti kalau username beda
       label: 'Instagram',
       icon: <FaInstagram />,
     },
@@ -29,7 +29,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-dark-700 bg-dark-800/50">
       <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
           {/* Icon social media */}
           <div className="flex items-center gap-6">
             {socialLinks.map(({ href, label, icon }) => (
@@ -39,9 +39,8 @@ export default function Footer() {
                 aria-label={label}
                 target="_blank"
                 rel="noreferrer"
-                className="p-2 rounded-full border border-gray-500 text-gray-300
-                           hover:text-white hover:border-white transition-colors
-                           flex items-center justify-center text-xl"
+                className="flex items-center justify-center rounded-full border border-gray-500 p-2 text-xl text-gray-300
+                           transition-colors hover:border-white hover:bg-white/5 hover:text-white"
               >
                 {icon}
               </Link>
@@ -49,7 +48,7 @@ export default function Footer() {
           </div>
 
           {/* Text hak cipta */}
-          <div className="text-gray-500 text-sm text-center md:text-right">
+          <div className="text-center text-sm text-gray-500 md:text-right">
             © {currentYear} Chandra Putra. {t('footer.rights')}
           </div>
         </div>
