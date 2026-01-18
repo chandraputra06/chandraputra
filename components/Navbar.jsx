@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useLanguage } from '@/hooks/useLanguage'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 
 export default function Navbar() {
   const pathname = usePathname()
@@ -24,14 +24,16 @@ export default function Navbar() {
     setIsOpen(false)
   }, [pathname])
 
-  const navLinks = [
+  // ✅ PENTING: Memoize navLinks agar tidak dibuat ulang setiap render!
+  const navLinks = useMemo(() => [
     { href: '/', label: t('nav.home') },
     { href: '/projects', label: t('nav.projects') },
     { href: '/about', label: t('nav.about') },
     { href: '/contact', label: t('nav.contact') },
-  ]
+  ], [t])
 
-  const LangToggle = (
+  // ✅ PENTING: Memoize LangToggle component
+  const LangToggle = useMemo(() => (
     <div className="flex items-center gap-2 text-sm">
       <button
         type="button"
@@ -57,7 +59,7 @@ export default function Navbar() {
         EN
       </button>
     </div>
-  )
+  ), [lang, setLang])
 
   // Blur kalau user sudah scroll ATAU menu mobile lagi kebuka
   const navActive = scrolled || isOpen

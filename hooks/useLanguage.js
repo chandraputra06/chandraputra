@@ -1,25 +1,33 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { dictionary } from '@/data/i18n'
 
 export function useLanguage() {
   const [lang, setLangState] = useState(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('language') || 'id'
+      const saved = window.localStorage.getItem('language')
+      return (saved === 'id' || saved === 'en') ? saved : 'id'
     }
     return 'id'
   })
 
-  const setLang = (newLang) => {
-    setLangState(newLang)
-    localStorage.setItem('language', newLang)
-  }
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('language', lang)
+    }
+  }, [lang])
 
-  const t = (key) => {
+  const setLang = useCallback((newLang) => {
+    if (newLang === 'id' || newLang === 'en') {
+      setLangState(newLang)
+    }
+  }, [])
+
+  const t = useCallback((key) => {
     const keys = key.split('.')
     let value = dictionary[lang]
-    
+
     for (const k of keys) {
       if (value && typeof value === 'object') {
         value = value[k]
@@ -27,9 +35,9 @@ export function useLanguage() {
         return key
       }
     }
-    
-    return value || key
-  }
 
-  return { lang, setLang, t }
+    return value || key
+  }, [lang])
+
+  return useMemo(() => ({ lang, setLang, t }), [lang, setLang, t])
 }

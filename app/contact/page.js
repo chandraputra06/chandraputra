@@ -64,11 +64,7 @@ export default function ContactPage() {
   return (
     <PageTransition>
       <div className="max-w-7xl mx-auto px-6 py-20">
-        <div
-          className="mx-auto max-w-3xl"
-          data-aos="fade-up"
-          data-aos-offset="80"
-        >
+        <div className="mx-auto max-w-3xl">
           <h1 className="mb-6 text-center text-5xl font-bold md:text-7xl">
             {t('contact.title')}
           </h1>
@@ -84,13 +80,7 @@ export default function ContactPage() {
           )}
 
           {/* Contact Form */}
-          <form
-            onSubmit={handleSubmit}
-            className="mb-12 space-y-6"
-            data-aos="fade-up"
-            data-aos-offset="80"
-            data-aos-delay="100"
-          >
+          <form onSubmit={handleSubmit} className="mb-12 space-y-6">
             <div>
               <label htmlFor="name" className="mb-2 block text-sm font-medium">
                 {t('contact.form.name')}
@@ -163,12 +153,7 @@ export default function ContactPage() {
           </form>
 
           {/* Book a Call */}
-          <div
-            className="border-t border-dark-700 py-8 text-center"
-            data-aos="fade-up"
-            data-aos-offset="80"
-            data-aos-delay="150"
-          >
+          <div className="border-t border-dark-700 py-8 text-center">
             <p className="mb-4 text-gray-400">
               {t('contact.bookCall.text')}
             </p>

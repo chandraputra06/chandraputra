@@ -47,31 +47,19 @@ export default function AboutPage() {
     <PageTransition>
       <div className="max-w-7xl mx-auto px-6 py-20">
         {/* Title */}
-        <h1
-          className="mb-20 text-5xl font-bold md:text-7xl"
-          data-aos="fade-up"
-          data-aos-offset="80"
-        >
+        <h1 className="mb-20 text-5xl font-bold md:text-7xl">
           {t('about.title')}
         </h1>
 
         {/* My Story Section */}
         <section className="mb-32">
-          <h2
-            className="mb-12 text-3xl font-bold md:text-4xl"
-            data-aos="fade-up"
-            data-aos-offset="80"
-          >
+          <h2 className="mb-12 text-3xl font-bold md:text-4xl">
             {t('about.myStory.title')}
           </h2>
 
           <div className="grid items-start gap-12 md:grid-cols-2">
             {/* Foto */}
-            <div
-              className="relative aspect-square overflow-hidden rounded-2xl border border-dark-700"
-              data-aos="fade-right"
-              data-aos-offset="100"
-            >
+            <div className="relative aspect-square overflow-hidden rounded-2xl border border-dark-700">
               <Image
                 src="/images/pic-chandra-rm.png"
                 alt="Profile"
@@ -82,12 +70,7 @@ export default function AboutPage() {
             </div>
 
             {/* Cerita */}
-            <div
-              className="space-y-6 text-lg leading-relaxed text-gray-400"
-              data-aos="fade-left"
-              data-aos-offset="100"
-              data-aos-delay="100"
-            >
+            <div className="space-y-6 text-lg leading-relaxed text-gray-400">
               <p>{t('about.myStory.p1')}</p>
               <p>{t('about.myStory.p2')}</p>
               <p>{t('about.myStory.p3')}</p>
@@ -97,11 +80,7 @@ export default function AboutPage() {
 
         {/* My Career Section */}
         <section className="mb-32 border-t border-dark-700 pt-20">
-          <h2
-            className="mb-12 text-3xl font-bold md:text-4xl"
-            data-aos="fade-up"
-            data-aos-offset="80"
-          >
+          <h2 className="mb-12 text-3xl font-bold md:text-4xl">
             {t('about.myCareer.title')}
           </h2>
 
@@ -110,9 +89,6 @@ export default function AboutPage() {
               <div
                 key={index}
                 className="rounded-2xl border border-dark-700 p-8 transition-colors hover:border-accent-500/50"
-                data-aos="fade-up"
-                data-aos-offset="80"
-                data-aos-delay={index * 100}
               >
                 <div className="mb-4 flex flex-col md:flex-row md:items-start md:justify-between">
                   <div>
@@ -140,11 +116,7 @@ export default function AboutPage() {
 
         {/* FAQ Section */}
         <section className="mb-20 border-t border-dark-700 pt-20">
-          <h2
-            className="mb-12 text-3xl font-bold md:text-4xl"
-            data-aos="fade-up"
-            data-aos-offset="80"
-          >
+          <h2 className="mb-12 text-3xl font-bold md:text-4xl">
             {t('about.faq.title')}
           </h2>
           <AccordionFAQ items={faqData} />

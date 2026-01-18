@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { useLanguage } from '@/hooks/useLanguage'
 import ProjectCard from '@/components/ProjectCard'
 import CTASection from '@/components/CTASection'
@@ -11,16 +11,19 @@ export default function ProjectsPage() {
   const { t } = useLanguage()
   const [activeFilter, setActiveFilter] = useState('all')
 
-  const filters = [
+  // Memoize filters agar tidak dibuat ulang setiap render
+  const filters = useMemo(() => [
     { id: 'all', label: t('projects.filters.all') },
     { id: 'web', label: t('projects.filters.web') },
     { id: 'mobile', label: t('projects.filters.mobile') },
-  ]
+  ], [t])
 
-  const filteredProjects =
-    activeFilter === 'all'
+  // Memoize filtered projects
+  const filteredProjects = useMemo(() => {
+    return activeFilter === 'all'
       ? projects
       : projects.filter((p) => p.category === activeFilter)
+  }, [activeFilter])
 
   return (
     <PageTransition>
@@ -58,12 +61,7 @@ export default function ProjectsPage() {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              className="transition-transform duration-200 hover:-translate-y-1"
-            >
-              <ProjectCard project={project} />
-            </div>
+            <ProjectCard key={project.id} project={project} />
           ))}
         </div>
 

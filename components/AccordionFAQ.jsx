@@ -1,46 +1,54 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, memo } from 'react'
+import { useLanguage } from '@/hooks/useLanguage'
 
-export default function AccordionFAQ({ items }) {
+function AccordionFAQ({ items }) {
+  const { lang } = useLanguage()
   const [openIndex, setOpenIndex] = useState(null)
 
-  const toggleAccordion = (index) => {
+  const toggle = (index) => {
     setOpenIndex(openIndex === index ? null : index)
   }
 
+  if (!items || items.length === 0) {
+    return null
+  }
+
   return (
-    <div className="max-w-4xl space-y-4">
+    <div className="space-y-4">
       {items.map((item, index) => {
         const isOpen = openIndex === index
+        
+        // Support untuk format q/a dengan multilingual
+        const question = typeof item.q === 'object' ? item.q[lang] : item.q
+        const answer = typeof item.a === 'object' ? item.a[lang] : item.a
 
         return (
           <div
-            key={index}
-            className="overflow-hidden rounded-xl border border-dark-700 transition-colors hover:border-accent-500/50"
+            key={item.id || index}
+            className="overflow-hidden rounded-lg border border-dark-700"
           >
             <button
-              onClick={() => toggleAccordion(index)}
-              className="flex w-full items-center justify-between bg-dark-800/50 px-6 py-5 text-left transition-colors hover:bg-dark-800"
+              onClick={() => toggle(index)}
+              className="flex w-full items-center justify-between px-6 py-4 text-left transition-colors hover:bg-dark-800/60"
             >
-              <span className="pr-4 text-lg font-medium">{item.q}</span>
+              <span className="font-medium">{question}</span>
               <span
-                className={`flex-shrink-0 text-2xl text-accent-500 transform transition-transform duration-300 ${
-                  isOpen ? 'rotate-180' : ''
+                className={`text-2xl transition-transform ${
+                  isOpen ? 'rotate-45' : ''
                 }`}
               >
-                ↓
+                +
               </span>
             </button>
-
-            {/* Konten jawaban dengan animasi height & opacity pakai Tailwind */}
             <div
-              className={`grid overflow-hidden transition-all duration-300 ${
-                isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+              className={`overflow-hidden transition-all duration-300 ${
+                isOpen ? 'max-h-96' : 'max-h-0'
               }`}
             >
-              <div className="overflow-hidden bg-dark-800/30 px-6 py-5 leading-relaxed text-gray-400">
-                {item.a}
+              <div className="bg-dark-800/30 px-6 py-4 text-gray-400">
+                {answer}
               </div>
             </div>
           </div>
@@ -49,3 +57,5 @@ export default function AccordionFAQ({ items }) {
     </div>
   )
 }
+
+export default memo(AccordionFAQ)
