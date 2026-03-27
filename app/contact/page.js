@@ -1,12 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { useLanguage } from '@/hooks/useLanguage'
 import CTASection from '@/components/CTASection'
 import PageTransition from '@/components/PageTransition'
+import ScrollReveal from '@/components/ScrollReveal'
 
 export default function ContactPage() {
-  const { t } = useLanguage()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,150 +24,147 @@ export default function ContactPage() {
 
   const validateForm = () => {
     const newErrors = {}
-
-    if (!formData.name.trim()) {
-      newErrors.name = t('contact.form.errors.nameRequired')
-    }
-
+    if (!formData.name.trim()) newErrors.name = 'Name is required'
     if (!formData.email.trim()) {
-      newErrors.email = t('contact.form.errors.emailRequired')
+      newErrors.email = 'Email is required'
     } else if (!formData.email.includes('@')) {
-      newErrors.email = t('contact.form.errors.emailInvalid')
+      newErrors.email = 'Invalid email format'
     }
-
-    if (!formData.message.trim()) {
-      newErrors.message = t('contact.form.errors.messageRequired')
-    }
-
+    if (!formData.message.trim()) newErrors.message = 'Message is required'
     return newErrors
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
     const newErrors = validateForm()
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors)
       return
     }
-
-    // Simulate success
     setShowSuccess(true)
     setFormData({ name: '', email: '', message: '' })
-
-    setTimeout(() => {
-      setShowSuccess(false)
-    }, 5000)
+    setTimeout(() => setShowSuccess(false), 5000)
   }
 
   return (
     <PageTransition>
-      <div className="max-w-7xl mx-auto px-6 py-20">
+      <div className="relative max-w-7xl mx-auto px-6 pt-32 pb-20 md:pt-36">
+        {/* Decorative backgrounds */}
+        <div className="pointer-events-none absolute -top-40 right-1/4 h-[500px] w-[500px] rounded-full blob-bg blur-[120px]" />
+        <div className="pointer-events-none absolute bottom-0 left-0 h-[400px] w-[400px] rounded-full blob-bg blur-[120px]" />
+
         <div className="mx-auto max-w-3xl">
-          <h1 className="mb-6 text-center text-5xl font-bold md:text-7xl">
-            {t('contact.title')}
-          </h1>
-          <p className="mb-16 text-center text-xl text-gray-400">
-            {t('contact.subtitle')}
-          </p>
+          <ScrollReveal as="div">
+            <h1 className="mb-6 text-center text-5xl font-bold md:text-7xl">
+              <span className="text-gradient">Contact</span>
+            </h1>
+            <p className="mb-16 text-center text-xl text-muted">
+              Let&apos;s start a new project together
+            </p>
+          </ScrollReveal>
 
           {/* Success Message */}
           {showSuccess && (
-            <div className="mb-8 rounded-lg border border-green-500/50 bg-green-500/10 p-4 text-center text-green-500 transition-opacity">
-              {t('contact.form.successMessage')}
+            <div className="mb-8 rounded-2xl border border-emerald-500/25 bg-emerald-500/6 p-5 text-center backdrop-blur-sm animate-fade-in-up">
+              <div className="mb-2 text-2xl">✓</div>
+              <p className="text-emerald-500 font-medium">
+                Message sent successfully! I will contact you soon.
+              </p>
             </div>
           )}
 
           {/* Contact Form */}
-          <form onSubmit={handleSubmit} className="mb-12 space-y-6">
-            <div>
-              <label htmlFor="name" className="mb-2 block text-sm font-medium">
-                {t('contact.form.name')}
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className={`w-full rounded-lg bg-dark-800 px-4 py-3 border ${
-                  errors.name ? 'border-red-500' : 'border-dark-700'
-                } focus:outline-none focus:border-accent-500 transition-colors`}
-                placeholder={t('contact.form.namePlaceholder')}
-              />
-              {errors.name && (
-                <p className="mt-2 text-sm text-red-500">{errors.name}</p>
-              )}
-            </div>
+          <ScrollReveal className="rounded-3xl border border-surface-1 bg-surface-1 p-8 md:p-10 backdrop-blur-sm" delay={80}>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="name" className="mb-2 block text-sm font-medium text-muted">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className={`input-glow w-full rounded-xl bg-surface-1 px-5 py-4 border text-foreground placeholder-(--muted-2) ${
+                    errors.name ? 'border-red-500/50' : 'border-surface-1'
+                  } transition-all duration-300`}
+                  placeholder="Your full name"
+                />
+                {errors.name && (
+                  <p className="mt-2 text-sm text-red-400">{errors.name}</p>
+                )}
+              </div>
 
-            <div>
-              <label htmlFor="email" className="mb-2 block text-sm font-medium">
-                {t('contact.form.email')}
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className={`w-full rounded-lg bg-dark-800 px-4 py-3 border ${
-                  errors.email ? 'border-red-500' : 'border-dark-700'
-                } focus:outline-none focus:border-accent-500 transition-colors`}
-                placeholder={t('contact.form.emailPlaceholder')}
-              />
-              {errors.email && (
-                <p className="mt-2 text-sm text-red-500">{errors.email}</p>
-              )}
-            </div>
+              <div>
+                <label htmlFor="email" className="mb-2 block text-sm font-medium text-muted">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className={`input-glow w-full rounded-xl bg-surface-1 px-5 py-4 border text-foreground placeholder-(--muted-2) ${
+                    errors.email ? 'border-red-500/50' : 'border-surface-1'
+                  } transition-all duration-300`}
+                  placeholder="email@example.com"
+                />
+                {errors.email && (
+                  <p className="mt-2 text-sm text-red-400">{errors.email}</p>
+                )}
+              </div>
 
-            <div>
-              <label
-                htmlFor="message"
-                className="mb-2 block text-sm font-medium"
+              <div>
+                <label htmlFor="message" className="mb-2 block text-sm font-medium text-muted">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows={6}
+                  className={`input-glow w-full resize-none rounded-xl bg-surface-1 px-5 py-4 border text-foreground placeholder-(--muted-2) ${
+                    errors.message ? 'border-red-500/50' : 'border-surface-1'
+                  } transition-all duration-300`}
+                  placeholder="Tell me about your project..."
+                />
+                {errors.message && (
+                  <p className="mt-2 text-sm text-red-400">{errors.message}</p>
+                )}
+              </div>
+
+              <button
+                type="submit"
+                className="shimmer w-full rounded-xl bg-accent-500 px-8 py-4 font-semibold text-dark-900 transition-all duration-300 hover:bg-accent-400 hover:shadow-lg hover:shadow-accent-500/25 transform hover:scale-[1.02] active:scale-95"
               >
-                {t('contact.form.message')}
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                rows={6}
-                className={`w-full resize-none rounded-lg bg-dark-800 px-4 py-3 border ${
-                  errors.message ? 'border-red-500' : 'border-dark-700'
-                } focus:outline-none focus:border-accent-500 transition-colors`}
-                placeholder={t('contact.form.messagePlaceholder')}
-              />
-              {errors.message && (
-                <p className="mt-2 text-sm text-red-500">{errors.message}</p>
-              )}
-            </div>
-
-            <button
-              type="submit"
-              className="w-full rounded-lg bg-accent-500 px-8 py-4 font-medium transition-colors duration-200 hover:bg-accent-600 transform transition-transform hover:scale-105 active:scale-95"
-            >
-              {t('contact.form.send')}
-            </button>
-          </form>
+                SEND
+              </button>
+            </form>
+          </ScrollReveal>
 
           {/* Book a Call */}
-          <div className="border-t border-dark-700 py-8 text-center">
-            <p className="mb-4 text-gray-400">
-              {t('contact.bookCall.text')}
+          <div className="mt-12 text-center">
+            <div className="gradient-divider mb-8" />
+            <p className="mb-5 text-muted">
+              Or schedule a direct call with me
             </p>
             <button
-              className="rounded-lg border border-accent-500 px-8 py-3 font-medium text-accent-500 transition-all duration-200 hover:bg-accent-500 hover:text-white transform transition-transform hover:scale-105 active:scale-95"
+              className="rounded-xl border border-accent-500/30 bg-accent-500/5 px-8 py-3.5 font-semibold text-accent-400 transition-all duration-300 hover:border-accent-500/50 hover:bg-accent-500/10 hover:shadow-lg hover:shadow-accent-500/10 transform hover:scale-105 active:scale-95 backdrop-blur-sm"
               type="button"
             >
-              {t('contact.bookCall.button')}
+              Book a Call
             </button>
           </div>
         </div>
 
         {/* CTA Section */}
         <div className="mt-32">
-          <CTASection />
+          <ScrollReveal delay={120}>
+            <CTASection />
+          </ScrollReveal>
         </div>
       </div>
     </PageTransition>

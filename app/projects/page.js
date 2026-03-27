@@ -1,80 +1,51 @@
 'use client'
 
-import { useState, useMemo } from 'react'
-import { useLanguage } from '@/hooks/useLanguage'
 import ProjectCard from '@/components/ProjectCard'
 import CTASection from '@/components/CTASection'
 import PageTransition from '@/components/PageTransition'
+import ScrollReveal from '@/components/ScrollReveal'
 import { projects } from '@/data/projects'
 
 export default function ProjectsPage() {
-  const { t } = useLanguage()
-  const [activeFilter, setActiveFilter] = useState('all')
-
-  // Memoize filters agar tidak dibuat ulang setiap render
-  const filters = useMemo(() => [
-    { id: 'all', label: t('projects.filters.all') },
-    { id: 'web', label: t('projects.filters.web') },
-    { id: 'mobile', label: t('projects.filters.mobile') },
-  ], [t])
-
-  // Memoize filtered projects
-  const filteredProjects = useMemo(() => {
-    return activeFilter === 'all'
-      ? projects
-      : projects.filter((p) => p.category === activeFilter)
-  }, [activeFilter])
-
   return (
     <PageTransition>
-      <div className="max-w-7xl mx-auto px-6 py-20">
+      <div className="relative max-w-7xl mx-auto px-6 pt-32 pb-20 md:pt-36">
+        {/* Decorative background */}
+        <div className="pointer-events-none absolute -top-40 right-0 h-[500px] w-[500px] rounded-full blob-bg blur-[120px]" />
+
         {/* Title */}
-        <h1 className="mb-12 text-5xl font-bold md:text-7xl">
-          {t('projects.title')}
-        </h1>
+        <ScrollReveal as="h1" className="mb-6 text-5xl font-bold md:text-7xl">
+          <span className="text-gradient">Projects</span>
+        </ScrollReveal>
 
-        {/* Tabs Filter */}
-        <div className="mb-12">
-          <div className="relative flex gap-8 border-b border-dark-700">
-            {filters.map((filter) => {
-              const isActive = activeFilter === filter.id
-              return (
-                <button
-                  key={filter.id}
-                  onClick={() => setActiveFilter(filter.id)}
-                  className={`relative px-2 pb-4 text-sm md:text-base transition-colors ${
-                    isActive
-                      ? 'text-white'
-                      : 'text-gray-500 hover:text-gray-300'
-                  }`}
-                >
-                  <span>{filter.label}</span>
-                  {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent-500" />
-                  )}
-                </button>
-              )
-            })}
-          </div>
-        </div>
+        {/* Subtitle line */}
+        <div className="gradient-divider mb-12" />
 
-        {/* Projects Grid */}
+        {/* Projects Grid — all projects displayed directly */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {projects.map((project, index) => (
+            <ScrollReveal
+              key={project.id}
+              delay={index * 90}
+            >
+              <ProjectCard project={project} />
+            </ScrollReveal>
           ))}
         </div>
 
         {/* No projects message */}
-        {filteredProjects.length === 0 && (
-          <div className="py-20 text-center text-gray-500">
-            {t('projects.noProjects')}
+        {projects.length === 0 && (
+          <div className="py-20 text-center">
+            <div className="mb-4 text-4xl">🔍</div>
+            <p className="text-muted-2">No projects found</p>
           </div>
         )}
 
         {/* CTA Section */}
         <div className="mt-32">
-          <CTASection />
+          <ScrollReveal delay={120}>
+            <CTASection />
+          </ScrollReveal>
         </div>
       </div>
     </PageTransition>

@@ -3,47 +3,41 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-/**
- * @typedef {Object} Project
- * @property {string} id
- * @property {string} title
- * @property {string} description
- * @property {string[]} [tech]
- * @property {string} [image]
- */
-
-/**
- * @param {{ project: Project }} props
- */
 export default function ProjectCard({ project }) {
   const hasTech = Array.isArray(project.tech) && project.tech.length > 0
 
   return (
-    <article className="group flex h-full flex-col rounded-2xl border border-dark-700 bg-dark-800/60 p-4 transition-all hover:-translate-y-1 hover:border-accent-500/60">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-surface-1 bg-surface-1 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:border-accent-500/30 hover:bg-surface-2 hover:shadow-xl hover:shadow-accent-500/5 cursor-pointer">
+      {/* Glow effect on hover */}
+      <div className="absolute -inset-px rounded-2xl bg-linear-to-b from-accent-500/0 to-accent-500/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:from-accent-500/10 group-hover:to-transparent pointer-events-none" />
+
       {project.image && (
-        <div className="relative mb-4 h-48 w-full overflow-hidden rounded-xl bg-dark-900">
+        <div className="relative h-48 w-full overflow-hidden bg-background">
           <Image
             src={project.image}
             alt={project.title || 'Project image'}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-cover transition-all duration-700 group-hover:scale-110"
           />
+          <div className="absolute inset-0 overlay-to-bg opacity-70" />
         </div>
       )}
 
-      <div className="flex flex-1 flex-col gap-3">
-        <h3 className="text-xl font-semibold">{project.title}</h3>
+      <div className="relative flex flex-1 flex-col gap-3 p-5">
+        <h3 className="text-lg font-semibold tracking-tight transition-colors duration-300 group-hover:text-accent-400">
+          {project.title}
+        </h3>
 
-        <p className="flex-1 text-sm text-gray-400">
+        <p className="flex-1 text-sm leading-relaxed text-muted">
           {project.description}
         </p>
 
         {hasTech && (
-          <div className="flex flex-wrap gap-2 text-[11px] text-gray-400">
+          <div className="flex flex-wrap gap-2">
             {project.tech.map((item) => (
               <span
                 key={item}
-                className="rounded-full bg-dark-900 px-3 py-1 text-xs"
+                className="rounded-full border border-surface-1 bg-surface-2 px-3 py-1 text-[11px] font-medium text-muted transition-colors duration-300 group-hover:border-accent-500/20 group-hover:text-foreground"
               >
                 {item}
               </span>
@@ -53,10 +47,11 @@ export default function ProjectCard({ project }) {
 
         <Link
           href={`/projects/${project.id}`}
-          aria-label={`Lihat detail proyek ${project.title}`}
-          className="mt-3 text-sm font-medium text-accent-500 hover:text-accent-600"
+          aria-label={`View project details: ${project.title}`}
+          className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-accent-500 transition-all duration-300 hover:text-accent-400 hover:gap-3 cursor-pointer"
         >
-          Detail proyek →
+          Project details
+          <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
         </Link>
       </div>
     </article>
