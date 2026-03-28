@@ -24,59 +24,59 @@ export default function Home() {
 
         <div className="relative mx-auto max-w-7xl px-6 py-20">
           {/* HERO */}
-          <ScrollReveal as="section" className="flex min-h-[80vh] flex-col pb-16 md:flex-row md:items-stretch">
-            {/* Left: text */}
-            <div className="flex flex-1 flex-col justify-center gap-6 pr-0 md:pr-10">
-              <div className="mb-4 inline-block animate-fade-in-up">
-                <span className="inline-flex items-center gap-2 rounded-full border border-surface-1 bg-surface-1 px-5 py-2.5 text-sm text-muted backdrop-blur-sm">
-                  <span className="h-2 w-2 rounded-full bg-accent-400 animate-pulse-glow" />
-                  Open for Internship / Project
-                </span>
-              </div>
+          <ScrollReveal
+  as="section"
+  className="flex min-h-screen flex-col items-center justify-center px-4 py-24 text-center"
+>
+  <div className="mx-auto flex w-full max-w-5xl flex-col items-center">
+    <h1 className="hero-fade-up text-4xl font-medium leading-tight text-[var(--foreground)] sm:text-5xl md:text-6xl lg:text-7xl">
+      Developing Digital Solutions
+    </h1>
 
-              <div className="mb-4 space-y-2 animate-fade-in-up stagger-1">
-                <h1 className="text-5xl font-bold leading-tight md:text-7xl lg:text-8xl">
-                  <span className="text-gradient">CHANDRA</span>{' '}
-                  <span className="text-foreground">PUTRA</span>
-                </h1>
-              </div>
+    <h2 className="hero-fade-up-delay-1 mt-4 text-2xl font-normal text-[var(--muted)] sm:text-3xl md:text-4xl">
+      crafted by{' '}
+      <span className="font-semibold text-[var(--accent-primary)]">
+        Chandra Putra
+      </span>
+    </h2>
 
-              <p className="max-w-xl text-lg uppercase text-muted md:text-xl animate-fade-in-up stagger-2">
-                Passionate software developer specializing in front-end, back-end, and fullstack web development.
-              </p>
+    <div className="hero-fade-up-delay-2 relative mt-10 w-full max-w-2xl">
+      <div className="hero-float-soft absolute inset-y-3 -left-3 -right-3 rounded-[2rem] bg-[var(--accent-primary)]/20" />
+      <div className="hero-zoom-soft relative flex h-[260px] items-end justify-center overflow-hidden rounded-[2rem] bg-[var(--accent-primary)] sm:h-[320px] md:h-[360px]">
+        <Image
+          src="/images/pic-chandra-rm.png"
+          alt="Chandra Putra"
+          width={420}
+          height={520}
+          priority
+          className="h-auto max-h-[115%] w-auto object-contain object-bottom"
+        />
+      </div>
+    </div>
 
-              <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center animate-fade-in-up stagger-3">
-                <Link
-                  href="/projects"
-                  className="shimmer inline-block transform rounded-xl bg-accent-500 px-8 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-dark-900 transition-all duration-300 hover:scale-105 hover:bg-accent-400 hover:shadow-lg hover:shadow-accent-500/25 active:scale-95 cursor-pointer"
-                >
-                  View Projects
-                </Link>
+    <p className="hero-fade-up-delay-2 mt-10 max-w-3xl text-lg leading-8 text-[var(--muted)] sm:text-xl">
+      I&apos;m a Full Stack Web Developer focused on building clean, responsive,
+      and scalable digital solutions for modern web experiences.
+    </p>
 
-                <a
-                  href="/cv-chandra-putra.pdf"
-                  download
-                  className="inline-block transform rounded-xl border border-surface-1 bg-surface-1 px-8 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-muted backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-accent-500/30 hover:bg-surface-2 hover:text-accent-400 active:scale-95 cursor-pointer"
-                >
-                  Download CV
-                </a>
-              </div>
+    <div className="hero-fade-up-delay-3 mt-10 flex flex-col items-center gap-4 sm:flex-row">
+      <Link
+        href="/contact"
+        className="inline-flex items-center justify-center rounded-full bg-[var(--accent-primary)] px-7 py-3 text-base font-medium text-white transition-all duration-300 hover:scale-[1.02] hover:opacity-90"
+      >
+        Reach Me
+      </Link>
 
-              <p className="mt-3 text-sm text-muted-2 animate-fade-in-up stagger-4">
-                chandra.wisesa06@gmail.com
-              </p>
-            </div>
-
-            <div className="relative mt-10 h-[50vh] w-full md:mt-0 md:h-auto md:flex-1 animate-fade-in stagger-2">
-              <Image
-                src="/images/pic-chandra-rm.png"
-                alt="Chandra Putra"
-                fill
-                priority
-                className="object-cover object-top"
-              />
-            </div>
-          </ScrollReveal>
+      <a
+        href="/cv-chandra-putra.pdf"
+        download
+        className="inline-flex items-center justify-center rounded-full border border-[var(--border-2)] px-7 py-3 text-base font-medium text-[var(--foreground)] transition-all duration-300 hover:scale-[1.02] hover:bg-[var(--surface-1)]"
+      >
+        Download CV
+      </a>
+    </div>
+  </div>
+</ScrollReveal>
 
           {/* WHO AM I */}
           <ScrollReveal as="section" className="mt-10 py-20" delay={100}>
