@@ -71,58 +71,6 @@ export default function Home() {
             </div>
           </ScrollReveal>
 
-          {/* WHO AM I */}
-          <ScrollReveal as="section" className="py-20 md:py-28">
-            <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 md:grid-cols-2 md:items-start">
-              <div>
-                <p className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--muted)]">
-                  About Me
-                </p>
-                <h2 className="mt-4 max-w-xl text-3xl font-semibold leading-tight text-[var(--foreground)] md:text-4xl">
-                  Building web solutions with clean structure and clear purpose
-                </h2>
-              </div>
-
-              <div>
-                <p className="text-base leading-8 text-[var(--muted)] md:text-lg">
-                  I am a web developer who enjoys turning ideas into responsive
-                  and functional digital products. I focus on building
-                  interfaces that feel clean, systems that stay structured, and
-                  experiences that are easy to use.
-                </p>
-
-                <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                  <div className="rounded-2xl border border-[var(--border-1)] bg-[var(--surface-1)] p-4">
-                    <h3 className="text-sm font-semibold text-[var(--foreground)]">
-                      Frontend
-                    </h3>
-                    <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                      Clean and responsive UI development.
-                    </p>
-                  </div>
-
-                  <div className="rounded-2xl border border-[var(--border-1)] bg-[var(--surface-1)] p-4">
-                    <h3 className="text-sm font-semibold text-[var(--foreground)]">
-                      Backend
-                    </h3>
-                    <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                      Structured logic and scalable systems.
-                    </p>
-                  </div>
-
-                  <div className="rounded-2xl border border-[var(--border-1)] bg-[var(--surface-1)] p-4">
-                    <h3 className="text-sm font-semibold text-[var(--foreground)]">
-                      Fullstack
-                    </h3>
-                    <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                      End-to-end web product development.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ScrollReveal>
-
           {/* TECH STACK */}
           <ScrollReveal as="section" delay={150}>
             <TechStackSection />

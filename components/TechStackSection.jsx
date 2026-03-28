@@ -71,7 +71,6 @@ function TechCard({ item }) {
 
   return (
     <div className={`group flex h-full flex-col items-center justify-between rounded-2xl border border-surface-1 bg-surface-1 px-6 py-8 text-center transition-all duration-500 hover:-translate-y-2 hover:border-surface-2 hover:bg-surface-2 hover:shadow-lg ${levelCfg.glow}`}>
-      {/* Icon with glow background */}
       <div className="relative mb-4">
         <div className="absolute -inset-3 rounded-full bg-accent-500/0 blur-xl transition-all duration-500 group-hover:bg-accent-500/10" />
         <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl border border-surface-1 bg-surface-2 transition-all duration-500 group-hover:border-surface-2 group-hover:bg-surface-2">
@@ -98,12 +97,12 @@ function TechStackSection() {
     <section className="mt-10 py-20">
       <div className="gradient-divider mb-20" />
 
-      <ScrollReveal className="max-w-4xl">
-        <h2 className="mb-4 text-4xl font-bold md:text-5xl">
+      <ScrollReveal className="max-w-4x justify-center">
+        <h2 className="mb-4 text-4xl font-semibold md:text-5xl text-center">
           <span className="text-gradient">Tools & Technologies</span>{' '}
           I Use
         </h2>
-        <p className="text-lg leading-relaxed text-muted">
+        <p className="text-lg leading-relaxed text-muted text-center">
           A combination of technologies and tools I use to build efficient,
           maintainable, and user-friendly web applications.
         </p>
