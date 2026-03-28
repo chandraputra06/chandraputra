@@ -1,7 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { FaArrowLeft, FaExternalLinkAlt, FaGithub } from 'react-icons/fa'
+import {
+  FaArrowLeft,
+  FaExternalLinkAlt,
+  FaGithub,
+} from 'react-icons/fa'
 import { projects } from '@/data/projects'
 
 export function generateStaticParams() {
@@ -20,8 +24,12 @@ export default async function ProjectDetailPage({ params }) {
   }
 
   return (
-    <section className="py-24 md:py-32">
-      <div className="mx-auto max-w-6xl px-4">
+    <section className="relative overflow-hidden py-24 md:py-32">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 hero-ambient opacity-70" />
+      </div>
+
+      <div className="relative mx-auto max-w-6xl px-4">
         <div className="mb-10">
           <Link
             href="/projects"
@@ -32,9 +40,9 @@ export default async function ProjectDetailPage({ params }) {
           </Link>
         </div>
 
-        <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr]">
+        <div className="grid gap-14 lg:grid-cols-[0.78fr_1.22fr]">
           <div>
-            <h1 className="mt-4 text-4xl font-semibold leading-tight text-[var(--foreground)] md:text-5xl">
+            <h1 className="mt-4 text-4xl font-semibold leading-tight text-[var(--foreground)] md:text-5xl lg:text-6xl">
               {project.title}
             </h1>
 
@@ -42,7 +50,44 @@ export default async function ProjectDetailPage({ params }) {
               {project.description}
             </p>
 
-            <div className="mt-10 space-y-8">
+            <div className="mt-8 flex flex-wrap gap-3">
+              {project.roles.map((role) => (
+                <span
+                  key={role}
+                  className="rounded-full border border-[var(--border-1)] bg-[var(--surface-1)] px-4 py-2 text-sm font-medium text-[var(--foreground)]"
+                >
+                  {role}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-4">
+              {project.projectUrl && (
+                <Link
+                  href={project.projectUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-[var(--accent-primary)] px-6 py-3 text-sm font-medium text-white transition-all duration-300 hover:opacity-90"
+                >
+                  View Project
+                  <FaExternalLinkAlt className="text-xs" />
+                </Link>
+              )}
+
+              {project.githubUrl && (
+                <Link
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-[var(--border-1)] px-6 py-3 text-sm font-medium text-[var(--foreground)] transition-all duration-300 hover:bg-[var(--surface-1)]"
+                >
+                  GitHub
+                  <FaGithub className="text-sm" />
+                </Link>
+              )}
+            </div>
+
+            <div className="mt-12 space-y-10">
               <div>
                 <h2 className="text-lg font-semibold text-[var(--foreground)]">
                   Study Case
@@ -63,22 +108,6 @@ export default async function ProjectDetailPage({ params }) {
 
               <div>
                 <h2 className="text-lg font-semibold text-[var(--foreground)]">
-                  Role
-                </h2>
-                <div className="mt-4 flex flex-wrap gap-3">
-                  {project.roles.map((role) => (
-                    <span
-                      key={role}
-                      className="rounded-full border border-[var(--border-1)] bg-[var(--surface-1)] px-4 py-2 text-sm font-medium text-[var(--foreground)]"
-                    >
-                      {role}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h2 className="text-lg font-semibold text-[var(--foreground)]">
                   Technology
                 </h2>
                 <div className="mt-4 flex flex-wrap gap-3">
@@ -91,32 +120,6 @@ export default async function ProjectDetailPage({ params }) {
                     </span>
                   ))}
                 </div>
-              </div>
-
-              <div className="flex flex-wrap gap-4 pt-2">
-                {project.projectUrl && (
-                  <Link
-                    href={project.projectUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-[var(--accent-primary)] px-6 py-3 text-sm font-medium text-white transition-all duration-300 hover:opacity-90"
-                  >
-                    View Project
-                    <FaExternalLinkAlt className="text-xs" />
-                  </Link>
-                )}
-
-                {project.githubUrl && (
-                  <Link
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-[var(--border-1)] px-6 py-3 text-sm font-medium text-[var(--foreground)] transition-all duration-300 hover:bg-[var(--surface-1)]"
-                  >
-                    GitHub
-                    <FaGithub className="text-sm" />
-                  </Link>
-                )}
               </div>
             </div>
           </div>
