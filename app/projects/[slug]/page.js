@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { FaArrowLeft, FaArrowRight, FaExternalLinkAlt, FaGithub } from 'react-icons/fa'
+import { FaArrowLeft, FaExternalLinkAlt, FaGithub } from 'react-icons/fa'
 import { projects } from '@/data/projects'
 
 export function generateStaticParams() {
@@ -10,8 +10,10 @@ export function generateStaticParams() {
   }))
 }
 
-export default function ProjectDetailPage({ params }) {
-  const project = projects.find((item) => item.slug === params.slug)
+export default async function ProjectDetailPage({ params }) {
+  const { slug } = await params
+
+  const project = projects.find((item) => item.slug === slug)
 
   if (!project) {
     notFound()
@@ -32,10 +34,6 @@ export default function ProjectDetailPage({ params }) {
 
         <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <p className="text-sm font-medium uppercase tracking-[0.18em] text-[var(--muted)]">
-              Project Detail
-            </p>
-
             <h1 className="mt-4 text-4xl font-semibold leading-tight text-[var(--foreground)] md:text-5xl">
               {project.title}
             </h1>

@@ -1,8 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
-
 import ProjectCard from "@/components/ProjectCard";
 import AccordionFAQ from "@/components/AccordionFAQ";
 import CTASection from "@/components/CTASection";
@@ -82,29 +80,38 @@ export default function Home() {
           </ScrollReveal>
 
           {/* PROJECTS */}
-          <ScrollReveal as="section" className="mt-10 py-20" delay={150}>
-            <div className="gradient-divider mb-20" />
-            <div className="mb-12 flex items-end justify-between">
-              <h2 className="text-4xl font-bold md:text-5xl">
-                <span className="text-gradient">Projects</span>
-              </h2>
-              <Link
-                href="/projects"
-                className="group inline-flex items-center gap-2 font-medium text-accent-500 transition-all duration-300 hover:text-accent-400"
-              >
-                View All
-                <span className="transition-transform duration-300 group-hover:translate-x-1">
-                  →
-                </span>
-              </Link>
+          <ScrollReveal as="section" className="py-20 md:py-28" delay={150}>
+            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+              <div className="max-w-2xl">
+                <h2 className="mt-4 text-3xl font-semibold leading-tight text-[var(--foreground)] md:text-4xl">
+                  Selected Work & Recent Builds
+                </h2>
+
+                <p className="mt-4 text-base leading-8 text-[var(--muted)] md:text-lg">
+                  A selection of projects that reflect my approach to building
+                  clean, functional, and modern web experiences.
+                </p>
+              </div>
+
+              <div>
+                <Link
+                  href="/projects"
+                  className="inline-flex cursor-pointer items-center justify-center rounded-full border border-[var(--border-1)] px-6 py-3 text-sm font-medium text-[var(--foreground)] transition-all duration-300 hover:bg-[var(--surface-1)]"
+                >
+                  View All
+                </Link>
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              {projects.slice(0, 4).map((project) => (
-                <ScrollReveal key={project.id} delay={100}>
-                  <ProjectCard project={project} />
-                </ScrollReveal>
-              ))}
+            <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {projects
+                .filter((project) => project.featured)
+                .slice(0, 3)
+                .map((project, index) => (
+                  <ScrollReveal key={project.id} delay={index * 80}>
+                    <ProjectCard project={project} />
+                  </ScrollReveal>
+                ))}
             </div>
           </ScrollReveal>
 

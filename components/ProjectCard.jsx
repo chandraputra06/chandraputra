@@ -22,9 +22,17 @@ export default function ProjectCard({ project }) {
       )}
 
       <div className="flex flex-1 flex-col p-5">
-        <h3 className="text-xl font-semibold leading-snug text-[var(--foreground)]">
-          {project.title}
-        </h3>
+        <div className="flex items-start justify-between gap-4">
+          <h3 className="text-xl font-semibold leading-snug text-[var(--foreground)]">
+            {project.title}
+          </h3>
+
+          {project.year && (
+            <span className="shrink-0 text-sm text-[var(--muted-2)]">
+              {project.year}
+            </span>
+          )}
+        </div>
 
         <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
           {project.shortDescription}
@@ -43,9 +51,7 @@ export default function ProjectCard({ project }) {
           </div>
         )}
 
-        <div className="mt-6 flex items-center justify-between">
-          <span className="text-sm text-[var(--muted-2)]">{project.year}</span>
-
+        <div className="mt-6">
           <Link
             href={`/projects/${project.slug}`}
             aria-label={`View project details: ${project.title}`}
