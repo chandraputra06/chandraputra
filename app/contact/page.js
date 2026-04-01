@@ -1,172 +1,123 @@
-'use client'
+import Link from 'next/link'
+import {
+  FaEnvelope,
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+} from 'react-icons/fa'
 
-import { useState } from 'react'
-import CTASection from '@/components/CTASection'
-import PageTransition from '@/components/PageTransition'
-import ScrollReveal from '@/components/ScrollReveal'
+export const metadata = {
+  title: 'Contact - Chandra Putra',
+  description: 'Get in touch with Chandra Putra for collaborations and web development projects.',
+}
+
+const contactItems = [
+  {
+    title: 'Email',
+    value: 'chandra.wisesa06@gmail.com',
+    href: 'mailto:chandra.wisesa06@gmail.com',
+    icon: FaEnvelope,
+  },
+  {
+    title: 'GitHub',
+    value: 'github.com/yourusername',
+    href: 'https://github.com/yourusername',
+    icon: FaGithub,
+  },
+  {
+    title: 'LinkedIn',
+    value: 'linkedin.com/in/yourusername',
+    href: 'https://linkedin.com/in/yourusername',
+    icon: FaLinkedin,
+  },
+  {
+    title: 'Instagram',
+    value: '@yourusername',
+    href: 'https://instagram.com/yourusername',
+    icon: FaInstagram,
+  },
+]
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  })
-  const [errors, setErrors] = useState({})
-  const [showSuccess, setShowSuccess] = useState(false)
-
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: '' }))
-    }
-  }
-
-  const validateForm = () => {
-    const newErrors = {}
-    if (!formData.name.trim()) newErrors.name = 'Name is required'
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required'
-    } else if (!formData.email.includes('@')) {
-      newErrors.email = 'Invalid email format'
-    }
-    if (!formData.message.trim()) newErrors.message = 'Message is required'
-    return newErrors
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const newErrors = validateForm()
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors)
-      return
-    }
-    setShowSuccess(true)
-    setFormData({ name: '', email: '', message: '' })
-    setTimeout(() => setShowSuccess(false), 5000)
-  }
-
   return (
-    <PageTransition>
-      <div className="relative max-w-7xl mx-auto px-6 pt-32 pb-20 md:pt-36">
-        {/* Decorative backgrounds */}
-        <div className="pointer-events-none absolute -top-40 right-1/4 h-[500px] w-[500px] rounded-full blob-bg blur-[120px]" />
-        <div className="pointer-events-none absolute bottom-0 left-0 h-[400px] w-[400px] rounded-full blob-bg blur-[120px]" />
+    <section className="relative overflow-hidden py-24 md:py-32">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 hero-ambient opacity-70" />
+      </div>
 
-        <div className="mx-auto max-w-3xl">
-          <ScrollReveal as="div">
-            <h1 className="mb-6 text-center text-5xl font-bold md:text-7xl">
-              <span className="text-gradient">Contact</span>
-            </h1>
-            <p className="mb-16 text-center text-xl text-muted">
-              Let&apos;s start a new project together
-            </p>
-          </ScrollReveal>
+      <div className="relative mx-auto max-w-6xl px-4">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-medium uppercase tracking-[0.18em] text-[var(--muted)]">
+            Contact
+          </p>
 
-          {/* Success Message */}
-          {showSuccess && (
-            <div className="mb-8 rounded-2xl border border-emerald-500/25 bg-emerald-500/6 p-5 text-center backdrop-blur-sm animate-fade-in-up">
-              <div className="mb-2 text-2xl">✓</div>
-              <p className="text-emerald-500 font-medium">
-                Message sent successfully! I will contact you soon.
-              </p>
-            </div>
-          )}
+          <h1 className="mt-4 text-4xl font-semibold leading-tight text-[var(--foreground)] md:text-5xl lg:text-6xl">
+            Let’s build something meaningful together
+          </h1>
 
-          {/* Contact Form */}
-          <ScrollReveal className="rounded-3xl border border-surface-1 bg-surface-1 p-8 md:p-10 backdrop-blur-sm" delay={80}>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="mb-2 block text-sm font-medium text-muted">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className={`input-glow w-full rounded-xl bg-surface-1 px-5 py-4 border text-foreground placeholder-(--muted-2) ${
-                    errors.name ? 'border-red-500/50' : 'border-surface-1'
-                  } transition-all duration-300`}
-                  placeholder="Your full name"
-                />
-                {errors.name && (
-                  <p className="mt-2 text-sm text-red-400">{errors.name}</p>
-                )}
-              </div>
+          <p className="mt-5 text-base leading-8 text-[var(--muted)] md:text-lg">
+            I’m open to collaborations, freelance opportunities, and web
+            development projects. Feel free to reach out through the contact
+            channels below.
+          </p>
+        </div>
 
-              <div>
-                <label htmlFor="email" className="mb-2 block text-sm font-medium text-muted">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className={`input-glow w-full rounded-xl bg-surface-1 px-5 py-4 border text-foreground placeholder-(--muted-2) ${
-                    errors.email ? 'border-red-500/50' : 'border-surface-1'
-                  } transition-all duration-300`}
-                  placeholder="email@example.com"
-                />
-                {errors.email && (
-                  <p className="mt-2 text-sm text-red-400">{errors.email}</p>
-                )}
-              </div>
+        <div className="mt-16 grid gap-6 md:grid-cols-2">
+          {contactItems.map((item) => {
+            const Icon = item.icon
 
-              <div>
-                <label htmlFor="message" className="mb-2 block text-sm font-medium text-muted">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={6}
-                  className={`input-glow w-full resize-none rounded-xl bg-surface-1 px-5 py-4 border text-foreground placeholder-(--muted-2) ${
-                    errors.message ? 'border-red-500/50' : 'border-surface-1'
-                  } transition-all duration-300`}
-                  placeholder="Tell me about your project..."
-                />
-                {errors.message && (
-                  <p className="mt-2 text-sm text-red-400">{errors.message}</p>
-                )}
-              </div>
-
-              <button
-                type="submit"
-                className="shimmer w-full rounded-xl bg-accent-500 px-8 py-4 font-semibold text-dark-900 transition-all duration-300 hover:bg-accent-400 hover:shadow-lg hover:shadow-accent-500/25 transform hover:scale-[1.02] active:scale-95"
+            return (
+              <Link
+                key={item.title}
+                href={item.href}
+                target={item.href.startsWith('http') ? '_blank' : undefined}
+                rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
+                className="group flex items-start gap-4 rounded-[1.75rem] border border-[var(--border-1)] bg-[var(--surface-1)] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--border-2)] hover:bg-[var(--surface-2)]"
               >
-                SEND
-              </button>
-            </form>
-          </ScrollReveal>
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--accent-primary)] text-white">
+                  <Icon className="text-base" />
+                </div>
 
-          {/* Book a Call */}
-          <div className="mt-12 text-center">
-            <div className="gradient-divider mb-8" />
-            <p className="mb-5 text-muted">
-              Or schedule a direct call with me
-            </p>
-            <button
-              className="rounded-xl border border-accent-500/30 bg-accent-500/5 px-8 py-3.5 font-semibold text-accent-400 transition-all duration-300 hover:border-accent-500/50 hover:bg-accent-500/10 hover:shadow-lg hover:shadow-accent-500/10 transform hover:scale-105 active:scale-95 backdrop-blur-sm"
-              type="button"
+                <div className="min-w-0">
+                  <h2 className="text-lg font-semibold text-[var(--foreground)]">
+                    {item.title}
+                  </h2>
+                  <p className="mt-2 break-all text-sm leading-7 text-[var(--muted)]">
+                    {item.value}
+                  </p>
+                </div>
+              </Link>
+            )
+          })}
+        </div>
+
+        <div className="mt-14 rounded-[2rem] border border-[var(--border-1)] bg-[var(--surface-1)] p-8 text-center">
+          <h2 className="text-2xl font-semibold text-[var(--foreground)] md:text-3xl">
+            Ready to discuss your next project?
+          </h2>
+
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-[var(--muted)] md:text-lg">
+            Whether you need a website, an internal system, or a modern web
+            interface, I’d be happy to discuss how I can help.
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <Link
+              href="mailto:chandra.wisesa06@gmail.com"
+              className="inline-flex cursor-pointer items-center justify-center rounded-full bg-[var(--accent-primary)] px-6 py-3 text-sm font-medium text-white transition-all duration-300 hover:opacity-90"
             >
-              Book a Call
-            </button>
+              Send Email
+            </Link>
+
+            <Link
+              href="/projects"
+              className="inline-flex cursor-pointer items-center justify-center rounded-full border border-[var(--border-1)] px-6 py-3 text-sm font-medium text-[var(--foreground)] transition-all duration-300 hover:bg-[var(--surface-2)]"
+            >
+              View Projects
+            </Link>
           </div>
         </div>
-
-        {/* CTA Section */}
-        <div className="mt-32">
-          <ScrollReveal delay={120}>
-            <CTASection />
-          </ScrollReveal>
-        </div>
       </div>
-    </PageTransition>
+    </section>
   )
 }
