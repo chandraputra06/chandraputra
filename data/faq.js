@@ -1,27 +1,27 @@
 export const faqData = [
   {
     id: 1,
-    q: 'What technologies do you specialize in?',
-    a: 'I specialize in modern frontend technologies including React, Next.js, TypeScript, and Tailwind CSS. I also have experience with various backend technologies and mobile development using React Native.',
+    q: 'What services do you offer?',
+    a: 'I offer website development services such as landing pages, company profile websites, travel and tour websites, and other custom web solutions. I also work on creative design for social media.',
   },
   {
     id: 2,
-    q: 'How long does a typical project take?',
-    a: 'Project timelines vary depending on complexity and requirements. A simple website might take 2-4 weeks, while a complex web application could take 2-3 months. I provide detailed timelines during the project planning phase.',
+    q: 'What technologies do you usually use?',
+    a: 'I mainly work with Next.js, React, Laravel, Blade, Tailwind CSS, JavaScript, PHP, and MySQL. The stack I use depends on the needs and scope of the project.',
   },
   {
     id: 3,
-    q: 'Do you work with clients internationally?',
-    a: 'Yes, I work with clients from all around the world. I\'m experienced in remote collaboration and can adapt to different time zones to ensure smooth communication.',
+    q: 'Are you available for freelance projects?',
+    a: 'Yes, I am available for freelance work and collaborations. I am currently pursuing my studies while also working on client projects in web development and creative design.',
   },
   {
     id: 4,
-    q: 'What is your development process?',
-    a: 'I follow an agile development approach with regular check-ins and iterations. This includes initial consultation, planning, design review, development, testing, and deployment with ongoing support.',
+    q: 'Can you help with both design and development?',
+    a: 'Yes. I can help with both the visual direction and the development process, especially for projects that need a clean interface and a functional, responsive website.',
   },
   {
     id: 5,
-    q: 'Do you provide ongoing support after project completion?',
-    a: 'Yes, I offer various support and maintenance packages to ensure your project continues to run smoothly. This includes bug fixes, updates, and feature enhancements as needed.',
+    q: 'How can I start a project with you?',
+    a: 'You can contact me through the contact page or email me directly. After that, we can discuss your goals, project requirements, timeline, and the best approach for the work.',
   },
 ]

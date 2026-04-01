@@ -116,18 +116,21 @@ export default function Home() {
           </ScrollReveal>
 
           {/* FAQ */}
-          <ScrollReveal as="section" className="mt-10 py-20" delay={150}>
-            <div className="gradient-divider mb-20" />
-            <h2 className="mb-12 text-4xl font-bold md:text-5xl">
-              <span className="text-gradient">Any Questions?</span>
-            </h2>
-            <AccordionFAQ items={faqData} />
-          </ScrollReveal>
+          <ScrollReveal as="section" className="py-20 md:py-28" delay={150}>
+            <div className="max-w-2xl">
+              <h2 className="mt-4 text-3xl font-semibold leading-tight text-[var(--foreground)] md:text-4xl">
+                Any Questions?
+              </h2>
+              <p className="mt-4 text-base leading-8 text-[var(--muted)] md:text-lg">
+                Here are some common questions about my services, process, and
+                availability.
+              </p>
+            </div>
 
-          {/* CTA */}
-          <ScrollReveal as="section" delay={150}>
-            <CTASection />
-          </ScrollReveal>
+            <div className="mt-10">
+              <AccordionFAQ items={faqData} />
+            </div>
+          </ScrollReveal>          
         </div>
       </div>
     </PageTransition>
