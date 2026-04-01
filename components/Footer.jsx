@@ -4,9 +4,9 @@ import Link from 'next/link'
 import { FaGithub, FaLinkedinIn, FaInstagram } from 'react-icons/fa'
 
 const socialLinks = [
-  { href: 'https://github.com/chandraputra', label: 'GitHub', icon: FaGithub },
-  { href: 'https://www.linkedin.com/in/chandraputra', label: 'LinkedIn', icon: FaLinkedinIn },
-  { href: 'https://www.instagram.com/chandraputra', label: 'Instagram', icon: FaInstagram },
+  { href: 'https://github.com/chandraputra06', label: 'GitHub', icon: FaGithub },
+  { href: 'https://www.linkedin.com/in/putu-chandra-putra', label: 'LinkedIn', icon: FaLinkedinIn },
+  { href: 'https://www.instagram.com/chandrputraaa', label: 'Instagram', icon: FaInstagram },
 ]
 
 export default function Footer() {
