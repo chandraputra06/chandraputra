@@ -14,6 +14,10 @@ const poppins = Poppins({
 export const metadata = {
   title: 'Portfolio - Chandra Putra',
   description: 'Experienced frontend web developer specializing in modern web applications',
+  icons: {
+    icon: '/images/logo-chandra.png',
+    apple: '/images/logo-chandra.png',
+  },
 }
 
 export default function RootLayout({ children }) {

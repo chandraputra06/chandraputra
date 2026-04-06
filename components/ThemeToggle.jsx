@@ -19,7 +19,7 @@ export default function ThemeToggle({ className = '' }) {
       aria-label={mounted ? `Switch to ${nextTheme} mode` : 'Toggle theme'}
       onClick={() => setTheme(nextTheme)}
       className={[
-        'group inline-flex h-9 w-9 items-center justify-center rounded-xl border bg-surface-1 text-muted transition-all duration-300',
+        'group cursor-pointer inline-flex h-9 w-9 items-center justify-center rounded-xl border bg-surface-1 text-muted transition-all duration-300',
         'border-surface-1 hover:border-surface-2 hover:bg-surface-2 hover:text-accent-400',
         className,
       ].filter(Boolean).join(' ')}

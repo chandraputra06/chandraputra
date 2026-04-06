@@ -53,7 +53,7 @@ export default function Footer() {
         )}
 
         <p className="text-sm text-[var(--muted)]">
-          © 2026 Chandra Putra. All rights reserved.
+          © 2026 Chandra Putra. Full Stack Developer & Freelance Creative.
         </p>
       </div>
     </footer>

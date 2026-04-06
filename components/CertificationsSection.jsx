@@ -63,7 +63,7 @@ function CertificateLightbox({ items, activeIndex, onClose, onPrev, onNext }) {
       />
 
       <div className="relative z-[101] w-full max-w-6xl">
-        <div className="mb-4 flex items-center justify-between">
+        <div className="mb-4 hidden items-center justify-between lg:flex">
           <div className="hidden sm:block" />
 
           <div className="flex items-center gap-3 ml-auto">

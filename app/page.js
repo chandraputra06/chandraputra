@@ -3,7 +3,6 @@
 import Link from "next/link";
 import ProjectCard from "@/components/ProjectCard";
 import AccordionFAQ from "@/components/AccordionFAQ";
-import CTASection from "@/components/CTASection";
 import PageTransition from "@/components/PageTransition";
 import TechStackSection from "@/components/TechStackSection";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -130,7 +129,7 @@ export default function Home() {
             <div className="mt-10">
               <AccordionFAQ items={faqData} />
             </div>
-          </ScrollReveal>          
+          </ScrollReveal>
         </div>
       </div>
     </PageTransition>

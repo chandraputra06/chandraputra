@@ -5,6 +5,7 @@ import {
   FaLinkedin,
   FaInstagram,
 } from "react-icons/fa";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata = {
   title: "Contact - Chandra Putra",
@@ -38,79 +39,89 @@ export default function ContactPage() {
       </div>
 
       <div className="relative mx-auto max-w-4xl px-6 md:px-10">
-        <div className="mx-auto max-w-2xl text-center">
-          <h1 className="mt-4 text-3xl font-semibold leading-tight text-[var(--foreground)] md:text-4xl lg:text-5xl">
-            Let&apos;s work together
-          </h1>
 
-          <p className="mt-5 text-base leading-8 text-[var(--muted)] md:text-lg">
-            Open for freelance opportunities, collaborations, and web
-            development projects. If you have something in mind, feel free to
-            reach out.
-          </p>
-        </div>
+        {/* — Header — */}
+        <ScrollReveal>
+          <div className="mx-auto max-w-2xl text-center">
+            <h1 className="mt-4 text-3xl font-semibold leading-tight text-[var(--foreground)] md:text-4xl lg:text-5xl">
+              Let&apos;s work together
+            </h1>
+
+            <p className="mt-5 text-base leading-8 text-[var(--muted)] md:text-lg">
+              Open for freelance opportunities, collaborations, and web
+              development projects. If you have something in mind, feel free to
+              reach out.
+            </p>
+          </div>
+        </ScrollReveal>
 
         <div className="my-12 h-px" />
 
-        <div className="mx-auto max-w-2xl">
-          <div className="rounded-[2rem] border border-[var(--border-1)] bg-[var(--surface-1)] p-6 md:p-8">
-            <div className="flex flex-col items-center text-center">
-              <div className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-[var(--accent-primary)] text-white shadow-[var(--nav-shadow)]">
-                <FaEnvelope className="text-lg" />
-              </div>
+        {/* — Contact Card — */}
+        <ScrollReveal delay={150}>
+          <div className="mx-auto max-w-2xl">
+            <div className="rounded-[2rem] border border-[var(--border-1)] bg-[var(--surface-1)] p-6 md:p-8">
+              <div className="flex flex-col items-center text-center">
+                <div className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-[var(--accent-primary)] text-white shadow-[var(--nav-shadow)]">
+                  <FaEnvelope className="text-lg" />
+                </div>
 
-              <p className="mt-5 text-sm font-medium text-[var(--foreground)]">
-                Primary contact
-              </p>
+                <p className="mt-5 text-sm font-medium text-[var(--foreground)]">
+                  Primary contact
+                </p>
 
-              <Link
-                href="mailto:chandra.wisesa06@gmail.com"
-                className="mt-2 text-base font-medium text-[var(--foreground)] transition-opacity duration-300 hover:opacity-80 md:text-lg"
-              >
-                chandra.wisesa06@gmail.com
-              </Link>
-
-              <p className="mt-4 max-w-xl text-sm leading-7 text-[var(--muted)] md:text-base">
-                You can reach me directly or connect through the platforms below.
-              </p>
-
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                {socialLinks.map((item) => {
-                  const Icon = item.icon;
-
-                  return (
-                    <Link
-                      key={item.label}
-                      href={item.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={item.label}
-                      className="group inline-flex h-14 w-14 cursor-pointer items-center justify-center rounded-2xl border border-[var(--border-1)] bg-[var(--background)] text-[var(--muted)] transition-all duration-300 hover:-translate-y-1 hover:border-[var(--border-2)] hover:bg-[var(--surface-2)] hover:text-[var(--foreground)]"
-                    >
-                      <Icon className="text-lg transition-transform duration-300 group-hover:scale-110" />
-                    </Link>
-                  );
-                })}
-              </div>
-
-              <div className="mt-10 flex flex-wrap justify-center gap-3">
                 <Link
                   href="mailto:chandra.wisesa06@gmail.com"
-                  className="inline-flex cursor-pointer items-center justify-center rounded-full bg-[var(--accent-primary)] px-7 py-3 text-sm font-medium text-white transition-all duration-300 hover:opacity-90"
+                  className="mt-2 text-base font-medium text-[var(--foreground)] transition-opacity duration-300 hover:opacity-80 md:text-lg"
                 >
-                  Send Email
+                  chandra.wisesa06@gmail.com
                 </Link>
 
-                <Link
-                  href="/projects"
-                  className="inline-flex cursor-pointer items-center justify-center rounded-full border border-[var(--border-1)] px-7 py-3 text-sm font-medium text-[var(--foreground)] transition-all duration-300 hover:bg-[var(--surface-2)]"
-                >
-                  View Projects
-                </Link>
+                <p className="mt-4 max-w-xl text-sm leading-7 text-[var(--muted)] md:text-base">
+                  You can reach me directly or connect through the platforms below.
+                </p>
+
+                {/* Social Icons */}
+                <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+                  {socialLinks.map((item) => {
+                    const Icon = item.icon;
+
+                    return (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={item.label}
+                        className="group inline-flex h-14 w-14 cursor-pointer items-center justify-center rounded-2xl border border-[var(--border-1)] bg-[var(--background)] text-[var(--muted)] transition-all duration-300 hover:-translate-y-1 hover:border-[var(--border-2)] hover:bg-[var(--surface-2)] hover:text-[var(--foreground)]"
+                      >
+                        <Icon className="text-lg transition-transform duration-300 group-hover:scale-110" />
+                      </Link>
+                    );
+                  })}
+                </div>
+
+                {/* CTA Buttons */}
+                <div className="mt-10 flex flex-wrap justify-center gap-3">
+                  <Link
+                    href="mailto:chandra.wisesa06@gmail.com"
+                    className="inline-flex cursor-pointer items-center justify-center rounded-full bg-[var(--accent-primary)] px-7 py-3 text-sm font-medium text-white transition-all duration-300 hover:opacity-90"
+                  >
+                    Send Email
+                  </Link>
+
+                  <Link
+                    href="/projects"
+                    className="inline-flex cursor-pointer items-center justify-center rounded-full border border-[var(--border-1)] px-7 py-3 text-sm font-medium text-[var(--foreground)] transition-all duration-300 hover:bg-[var(--surface-2)]"
+                  >
+                    View Projects
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
+
       </div>
     </section>
   );

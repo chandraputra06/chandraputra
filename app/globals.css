@@ -53,27 +53,27 @@
   --background: #08111d;
   --foreground: #f8fbff;
 
-  --accent-primary: #ffffff;
+  --accent-primary: #8fb1d3;
   --accent-secondary: #d7e6f7;
-  --accent-tertiary: #8fb1d3;
+  --accent-tertiary: #ffffff;
 
-  --surface-1: rgba(255, 255, 255, 0.04);
-  --surface-2: rgba(255, 255, 255, 0.07);
+  --surface-1: rgba(255, 255, 255, 0.05);
+  --surface-2: rgba(255, 255, 255, 0.08);
 
   --border-1: rgba(255, 255, 255, 0.08);
-  --border-2: rgba(255, 255, 255, 0.14);
+  --border-2: rgba(255, 255, 255, 0.16);
 
   --muted: rgba(248, 251, 255, 0.74);
   --muted-2: rgba(248, 251, 255, 0.52);
 
-  --glass-bg: rgba(8, 17, 29, 0.72);
+  --glass-bg: rgba(8, 17, 29, 0.76);
   --glass-border: rgba(255, 255, 255, 0.08);
 
-  --glow-accent: rgba(143, 177, 211, 0.14);
-  --glow-accent-strong: rgba(143, 177, 211, 0.22);
+  --glow-accent: rgba(143, 177, 211, 0.16);
+  --glow-accent-strong: rgba(143, 177, 211, 0.24);
 
-  --overlay: rgba(0, 0, 0, 0.45);
-  --nav-shadow: 0 18px 45px rgba(0, 0, 0, 0.30);
+  --overlay: rgba(0, 0, 0, 0.5);
+  --nav-shadow: 0 18px 45px rgba(0, 0, 0, 0.32);
 
   --blob-alpha: 0.10;
   --divider-alpha: 0.22;
@@ -84,7 +84,7 @@
 
   --gradient-primary: linear-gradient(
     135deg,
-    #ffffff,
+    #d7e6f7,
     #8fb1d3,
     #132c48
   );
@@ -105,17 +105,6 @@ body {
   color: var(--foreground);
   font-family: var(--font-poppins), system-ui, sans-serif;
 }
-
-/* ============================================================
-   HERO IMAGE — Asymmetric shape
-   ============================================================ */
-
-/* Bentuk asymmetric:
-   top-left: 28px  top-right: 120px
-   bottom-right: 28px  bottom-left: 28px
-   ---------------------------------------------------------- */
-
-/* ── Keyframes ─────────────────────────────────────────────── */
 
 @keyframes hiFloat {
   0%, 100% { transform: translateY(0px);    }
@@ -288,4 +277,41 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* ── Logo Navbar ─────────────────────────────────────────────── */
+
+.logo-navbar {
+  filter: brightness(0);
+  transition: filter 0.3s ease;
+}
+
+[data-theme="dark"] .logo-navbar {
+  filter: brightness(0) invert(1);
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 cursor-pointer;
+  background: var(--accent-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+[data-theme="dark"] .btn-primary {
+  color: #08111d;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 cursor-pointer;
+  border: 1px solid var(--border-1);
+  color: var(--foreground);
+  background: transparent;
+}
+
+.btn-secondary:hover {
+  background: var(--surface-1);
+  border-color: var(--border-2);
 }

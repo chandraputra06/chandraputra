@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import ThemeToggle from '@/components/ThemeToggle'
@@ -46,9 +47,16 @@ export default function Navbar() {
           <div className="flex items-center justify-between">
             <Link
               href="/"
-              className="text-xl font-semibold tracking-tight text-[var(--foreground)] transition-opacity duration-300 hover:opacity-80"
+              className="block transition-transform duration-300 ease-out hover:scale-105 active:scale-95"
             >
-              Chandra
+              <Image
+                src="/images/logo-chandra.png"
+                alt="Chandra Putra"
+                width={100}
+                height={30}
+                className="logo-navbar h-10 w-auto object-contain"
+                priority
+              />
             </Link>
 
             <div className="hidden md:flex md:items-center md:gap-3">

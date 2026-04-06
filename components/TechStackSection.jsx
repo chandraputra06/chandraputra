@@ -83,9 +83,8 @@ function TechCard({ item }) {
       </p>
 
       <span
-        className={`mt-3 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] ${levelCfg.className}`}
+        className={`mt-3 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[10px] font-semibold tracking-[0.18em] ${levelCfg.className}`}
       >
-        <span className="h-1.5 w-1.5 rounded-full bg-current" />
         {levelCfg.label}
       </span>
     </div>
