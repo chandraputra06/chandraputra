@@ -56,10 +56,10 @@ export default function Home() {
                 >
                   Reach Me
                 </Link>
-
+          
                 <a
-                  href="/cv-chandra-putra.pdf"
-                  download
+                  href="/cv-chandraputra.pdf"
+                  download="cv-chandraputra.pdf"
                   className="inline-flex items-center justify-center rounded-full border border-[var(--border-2)] px-7 py-3 text-base font-medium text-[var(--foreground)] transition-all duration-300 hover:scale-[1.02] hover:bg-[var(--surface-1)]"
                 >
                   Download CV
