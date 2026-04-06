@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import ThemeToggle from '@/components/ThemeToggle'
@@ -18,44 +19,59 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50)
+    const handleScroll = () => setScrolled(window.scrollY > 24)
     handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  useEffect(() => {
+    setIsOpen(false)
+  }, [pathname])
 
   const navActive = scrolled || isOpen
 
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
           navActive
-            ? 'border-b border-surface-1 bg-background/80 backdrop-blur-2xl shadow-nav'
+            ? 'border-b border-[var(--border-1)] bg-[var(--glass-bg)] backdrop-blur-xl'
             : 'bg-transparent'
         }`}
+        style={{
+          boxShadow: navActive ? 'var(--nav-shadow)' : 'none',
+        }}
       >
-        <div className="mx-auto max-w-7xl px-6 py-4 md:py-5">
+        <div className="mx-auto max-w-6xl px-6 py-4">
           <div className="flex items-center justify-between">
-            {/* Logo */}
-            <Link href="/" className="group relative text-2xl font-bold tracking-tight cursor-pointer">
-              <span className="relative z-10 transition-colors duration-300 group-hover:text-accent-400">CP</span>
-              <span className="absolute -inset-2 z-0 rounded-lg bg-accent-500/0 transition-all duration-300 group-hover:bg-accent-500/10" />
+            <Link
+              href="/"
+              className="block transition-transform duration-300 ease-out hover:scale-105 active:scale-95"
+            >
+              <Image
+                src="/images/logo-chandra.png"
+                alt="Chandra Putra"
+                width={100}
+                height={30}
+                className="logo-navbar h-10 w-auto object-contain"
+                priority
+              />
             </Link>
 
-            {/* Desktop nav */}
-            <div className="hidden items-center md:flex">
-              <div className="flex items-center gap-1 rounded-full border border-surface-1 bg-surface-1 px-2 py-1.5">
+            <div className="hidden md:flex md:items-center md:gap-3">
+              <div className="flex items-center gap-1 rounded-full border border-[var(--border-1)] bg-[var(--surface-1)]/90 px-2 py-1.5">
                 {NAV_LINKS.map((link) => {
                   const active = pathname === link.href
+
                   return (
                     <Link
                       key={link.href}
                       href={link.href}
-                      className={`relative rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-300 cursor-pointer ${
+                      className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
                         active
-                          ? 'bg-accent-500/15 text-accent-400 shadow-sm shadow-accent-500/10'
-                          : 'text-muted hover:text-foreground hover:bg-surface-2'
+                          ? 'bg-[var(--accent-primary)] text-white'
+                          : 'text-[var(--muted)] hover:bg-[var(--surface-2)] hover:text-[var(--foreground)]'
                       }`}
                     >
                       {link.label}
@@ -63,23 +79,19 @@ export default function Navbar() {
                   )
                 })}
               </div>
+
+              <ThemeToggle />
             </div>
 
-            {/* Actions (theme + hamburger on mobile) */}
-            <div className="flex items-center gap-2">
-              <div className="hidden md:block">
-                <ThemeToggle />
-              </div>
+            <div className="flex items-center gap-2 md:hidden">
+              <ThemeToggle />
 
-              {/* Mobile: theme + hamburger */}
-              <div className="flex items-center gap-2 md:hidden">
-                <ThemeToggle />
               <button
                 type="button"
                 aria-label="Toggle navigation"
                 aria-expanded={isOpen}
                 onClick={() => setIsOpen((prev) => !prev)}
-                className="relative z-50 flex h-9 w-9 items-center justify-center rounded-xl border border-surface-1 bg-surface-1 text-muted transition-all duration-300 hover:border-accent-500/50 hover:text-accent-400 hover:shadow-md hover:shadow-accent-500/10"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border-1)] bg-[var(--surface-1)] text-[var(--foreground)] transition-all duration-300 hover:bg-[var(--surface-2)]"
               >
                 <span className="relative block h-4 w-4">
                   <span
@@ -89,7 +101,7 @@ export default function Navbar() {
                   />
                   <span
                     className={`absolute inset-x-0 top-[6px] h-[2px] rounded-full bg-current transition-all duration-300 ${
-                      isOpen ? 'opacity-0 scale-0' : 'opacity-100'
+                      isOpen ? 'opacity-0' : 'opacity-100'
                     }`}
                   />
                   <span
@@ -99,28 +111,27 @@ export default function Navbar() {
                   />
                 </span>
               </button>
-              </div>
             </div>
           </div>
 
-          {/* Mobile menu */}
           <div
-            className={`md:hidden overflow-hidden transition-all duration-400 ${
-              isOpen ? 'max-h-80 opacity-100 mt-4' : 'max-h-0 opacity-0'
+            className={`overflow-hidden transition-all duration-300 md:hidden ${
+              isOpen ? 'mt-4 max-h-80 opacity-100' : 'max-h-0 opacity-0'
             }`}
           >
-            <div className="space-y-1 rounded-2xl border border-surface-1 bg-surface-1 p-2 backdrop-blur-xl">
+            <div className="space-y-1 rounded-2xl border border-[var(--border-1)] bg-[var(--surface-1)] p-2">
               {NAV_LINKS.map((link) => {
                 const active = pathname === link.href
+
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className={`block rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300 cursor-pointer ${
+                    className={`block rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300 ${
                       active
-                        ? 'bg-accent-500/15 text-accent-400'
-                        : 'text-muted hover:bg-surface-2 hover:text-foreground'
+                        ? 'bg-[var(--accent-primary)] text-white'
+                        : 'text-[var(--muted)] hover:bg-[var(--surface-2)] hover:text-[var(--foreground)]'
                     }`}
                   >
                     {link.label}
@@ -132,10 +143,9 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-40 bg-overlay backdrop-blur-sm md:hidden animate-fade-in"
+          className="fixed inset-0 z-40 bg-[var(--overlay)] backdrop-blur-sm md:hidden"
           onClick={() => setIsOpen(false)}
         />
       )}

@@ -1,67 +1,57 @@
-'use client'
+"use client";
 
-import { useEffect, useRef, useState } from 'react'
-
-function useInView(options = {}) {
-  const ref = useRef(null)
-  const [inView, setInView] = useState(false)
-
-  useEffect(() => {
-    if (!ref.current) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setInView(true)
-          } else if (!options.once) {
-            setInView(false)
-          }
-        })
-      },
-      {
-        threshold: 0.15,
-        rootMargin: '0px 0px -10% 0px',
-        ...options,
-      }
-    )
-
-    observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [options.once])
-
-  return { ref, inView }
-}
+import { useEffect, useRef, useState } from "react";
 
 export default function ScrollReveal({
-  as: Component = 'div',
   children,
-  className = '',
+  className = "",
+  as: Tag = "div",
   delay = 0,
-  once = true,
+  distance = 28,
+  duration = 850,
 }) {
-  const { ref, inView } = useInView({ once })
-  const [hasShown, setHasShown] = useState(false)
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (inView) {
-      setHasShown(true)
-    }
-  }, [inView])
+    const node = ref.current;
+    if (!node) return;
 
-  const visible = inView || (once && hasShown)
-  const baseClasses = 'sr-base'
-  const stateClass = visible ? 'sr-visible' : 'sr-hidden'
-  const mergedClassName = [baseClasses, stateClass, className].filter(Boolean).join(' ')
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(node);
+        }
+      },
+      {
+        threshold: 0.14,
+        rootMargin: "0px 0px -40px 0px",
+      }
+    );
+
+    observer.observe(node);
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <Component
+    <Tag
       ref={ref}
-      className={mergedClassName}
-      style={{ transitionDelay: `${delay}ms` }}
+      className={className}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible
+          ? "translate3d(0, 0, 0)"
+          : `translate3d(0, ${distance}px, 0)`,
+        transitionProperty: "opacity, transform",
+        transitionDuration: `${duration}ms`,
+        transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
+        transitionDelay: `${delay}ms`,
+        willChange: "opacity, transform",
+      }}
     >
       {children}
-    </Component>
-  )
+    </Tag>
+  );
 }
-

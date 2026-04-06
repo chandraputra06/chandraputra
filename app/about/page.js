@@ -1,163 +1,215 @@
-'use client'
+import Image from "next/image";
+import Link from "next/link";
+import { FaEnvelope, FaLinkedin, FaInstagram, FaGithub } from "react-icons/fa";
+import ScrollReveal from "@/components/ScrollReveal";
 
-import Image from 'next/image'
-import AccordionFAQ from '@/components/AccordionFAQ'
-import CTASection from '@/components/CTASection'
-import PageTransition from '@/components/PageTransition'
-import ScrollReveal from '@/components/ScrollReveal'
-import { faqData } from '@/data/faq'
+export const metadata = {
+  title: "About - Chandra Putra",
+  description:
+    "Learn more about Chandra Putra and his work in web development.",
+};
 
-const careerData = [
+const socialLinks = [
   {
-    year: '2023 - Present',
-    position: 'Senior Frontend Developer',
-    company: 'Tech Innovate Inc.',
-    description: [
-      'Lead development of modern web applications using React and Next.js',
-      'Mentor junior developers and conduct code reviews',
-      'Implement design systems and component libraries',
-    ],
+    label: "Email",
+    href: "mailto:chandra.wisesa06@gmail.com",
+    icon: FaEnvelope,
   },
   {
-    year: '2021 - 2023',
-    position: 'Frontend Developer',
-    company: 'Digital Solutions Co.',
-    description: [
-      'Built responsive web applications with React and TypeScript',
-      'Collaborated with designers and backend teams',
-      'Optimized application performance and accessibility',
-    ],
+    label: "LinkedIn",
+    href: "https://linkedin.com",
+    icon: FaLinkedin,
   },
   {
-    year: '2019 - 2021',
-    position: 'Junior Frontend Developer',
-    company: 'StartUp Labs',
-    description: [
-      'Developed user interfaces using HTML, CSS, and JavaScript',
-      'Learned modern frontend frameworks and best practices',
-      'Contributed to multiple client projects',
-    ],
+    label: "Instagram",
+    href: "https://instagram.com",
+    icon: FaInstagram,
   },
-]
+  {
+    label: "GitHub",
+    href: "https://github.com",
+    icon: FaGithub,
+  },
+];
+
+const skillGroups = [
+  {
+    title: "Languages",
+    items: ["JavaScript", "PHP", "HTML", "CSS"],
+  },
+  {
+    title: "Tools",
+    items: ["Git", "GitHub", "Vite", "MySQL", "Postman", "Figma", "Wordpress"],
+  },
+  {
+    title: "Frameworks",
+    items: ["Next.js", "React.js", "Laravel", "Blade", "Tailwind CSS"],
+  },
+  {
+    title: "Platforms",
+    items: ["Hostinger", "cPanel", "Google OAuth", "Gmail API"],
+  },
+];
 
 export default function AboutPage() {
   return (
-    <PageTransition>
-      <div className="relative max-w-7xl mx-auto px-6 pt-32 pb-20 md:pt-36 overflow-x-hidden">
-        {/* Decorative background */}
-        <div className="pointer-events-none absolute -top-40 left-1/4 h-[500px] w-[500px] rounded-full blob-bg blur-[120px]" />
+    <section className="relative overflow-hidden py-20 md:py-32">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 hero-ambient opacity-40" />
+      </div>
 
-        {/* Title */}
-        <ScrollReveal as="h1" className="mb-20 text-5xl font-bold md:text-7xl">
-          <span className="text-gradient">About Me</span>
+      <div className="relative mx-auto max-w-5xl px-6 md:px-10">
+
+        {/* — Hero Header — */}
+        <ScrollReveal>
+          <div className="flex flex-col items-center gap-6 text-center md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-8 md:text-left">
+            <h1 className="text-5xl leading-none font-semibold text-[var(--foreground)] sm:text-6xl md:text-7xl">
+              Chandra
+              <br />
+              <span className="italic font-light">Putra</span>
+            </h1>
+
+            <div className="flex max-w-xs flex-col gap-3 md:pb-2">
+              <p className="text-lg font-normal leading-snug text-[var(--foreground)] md:text-xl">
+                Full Stack Developer &amp; Freelance Creative
+              </p>
+              <p className="text-sm leading-relaxed text-[var(--muted)]">
+                Based in Bali, Indonesia. I build websites and digital experiences
+                for brands and businesses.
+              </p>
+            </div>
+          </div>
         </ScrollReveal>
 
-        {/* My Story Section */}
-        <section className="mb-32">
-          <ScrollReveal as="h2" className="mb-12 text-3xl font-bold md:text-4xl">
-            My Story
-          </ScrollReveal>
+        <div className="my-8 mb-12 h-px bg-[var(--border-1)] md:mb-14" />
 
-          <div className="grid items-start gap-12 md:grid-cols-2">
-            {/* Photo with gradient border ring */}
-            <ScrollReveal className="relative" delay={50}>
-              <div className="absolute -inset-1 rounded-2xl bg-linear-to-br from-accent-500/30 via-purple-500/20 to-sky-500/30 opacity-60 blur-sm" />
-              <div className="relative aspect-square overflow-hidden rounded-2xl border border-surface-1">
-                <Image
-                  src="/images/pic-chandra-rm.png"
-                  alt="Chandra Putra"
-                  fill
-                  className="object-cover"
-                  priority
-                />
+        <div className="grid gap-12 md:gap-16 lg:grid-cols-[1fr_1.65fr] lg:gap-20">
+
+          {/* — Left Column: Photo + Social — */}
+          <div className="flex flex-col items-center gap-8 lg:items-start">
+            <ScrollReveal delay={100} className="w-full max-w-[280px]">
+              <div className="overflow-hidden rounded-2xl border border-[var(--border-1)] aspect-[3/4]">
+                <div className="relative h-full w-full">
+                  <Image
+                    src="/images/pic-chandra.png"
+                    alt="Chandra Putra"
+                    fill
+                    className="object-cover object-top"
+                    priority
+                  />
+                </div>
               </div>
             </ScrollReveal>
 
-            {/* Story */}
-            <ScrollReveal className="space-y-6 text-lg leading-relaxed text-muted" delay={100}>
-              <p>
-                My journey in web development started from a great curiosity about how
-                websites work. What started as a hobby has now become a passion and
-                career that I love.
-              </p>
-              <p>
-                Over the years, I have worked on various projects ranging from simple
-                websites to complex web applications. Each project provides valuable
-                learning and helps me grow as a developer.
-              </p>
-              <p>
-                I continue to learn and follow the latest technology developments to
-                ensure I can provide the best solutions for my clients.
-              </p>
+            <ScrollReveal delay={200}>
+              <div className="w-full max-w-[280px] text-center">
+                <p className="mb-4 text-base font-semibold text-[var(--foreground)]">
+                  Connect
+                </p>
+
+                <div className="flex items-center justify-center gap-3">
+                  {socialLinks.map((item) => {
+                    const Icon = item.icon;
+
+                    return (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        target={
+                          item.href.startsWith("http") ? "_blank" : undefined
+                        }
+                        rel={
+                          item.href.startsWith("http") ? "noreferrer" : undefined
+                        }
+                        aria-label={item.label}
+                        className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-[var(--border-1)] text-[var(--muted)] transition-all duration-300 hover:border-[var(--border-2)] hover:bg-[var(--surface-1)] hover:text-[var(--foreground)]"
+                      >
+                        <Icon className="text-base" />
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
             </ScrollReveal>
           </div>
-        </section>
 
-        {/* My Career Section */}
-        <section className="mb-32 pt-20">
-          <div className="gradient-divider mb-20" />
-          <ScrollReveal as="h2" className="mb-12 text-3xl font-bold md:text-4xl">
-            <span className="text-gradient">My Career</span>
-          </ScrollReveal>
+          {/* — Right Column: Bio + Skills + CTA — */}
+          <div>
 
-          {/* Timeline */}
-          <div className="relative space-y-6 pl-8 md:pl-12">
-            {/* Vertical line */}
-            <div className="absolute left-[11px] md:left-[19px] top-2 bottom-2 w-px bg-linear-to-b from-accent-500/40 via-accent-500/20 to-transparent" />
+            {/* Bio */}
+            <ScrollReveal delay={100}>
+              <div className="space-y-5 text-base leading-8 text-[var(--muted)]">
+                <p>
+                  <b>I am a full stack web developer</b> currently pursuing my studies
+                  while actively working as a <b> freelancer</b> in website development
+                  and creative design. This journey allows me to continue <b>learning
+                  academically</b> while also gaining practical experience through
+                  real client projects.
+                </p>
+                <p>
+                  <b>My focus is on</b> landing pages, company profile websites, travel
+                  and tour websites, and creative social media design, helping
+                  brands present themselves in a more professional, clear, and
+                  visually engaging way.
+                </p>
+                <p>
+                  <b>I value</b> clean structure, responsive interfaces, and practical
+                  solutions that are easy to use and maintain. <b>With experience in</b>
+                  frontend, backend, and fullstack development, I aim to create
+                  digital products that are useful, scalable, and aligned with
+                  real business needs. <b>Beyond development,</b> I also enjoy <b>playing
+                  football and futsal</b>.
+                </p>
+              </div>
+            </ScrollReveal>
 
-            {careerData.map((item, index) => (
-              <ScrollReveal
-                key={index}
-                className="group relative"
-                delay={index * 120}
-              >
-                {/* Timeline dot */}
-                <div className="absolute -left-8 md:-left-12 top-8 flex items-center justify-center">
-                  <div className="h-3 w-3 rounded-full border-2 border-accent-500/60 bg-background transition-all duration-300 group-hover:border-accent-400 group-hover:bg-accent-500/20 group-hover:shadow-md group-hover:shadow-accent-500/20" />
-                </div>
+            <div className="my-10 h-px bg-[var(--border-1)]" />
 
-                <div className="rounded-2xl border border-surface-1 bg-surface-1 p-8 transition-all duration-500 hover:-translate-y-1 hover:border-accent-500/20 hover:bg-surface-2 hover:shadow-lg hover:shadow-accent-500/5">
-                  <div className="mb-4 flex flex-col md:flex-row md:items-start md:justify-between">
-                    <div>
-                      <h3 className="mb-2 text-2xl font-bold transition-colors duration-300 group-hover:text-accent-400">{item.position}</h3>
-                      <p className="font-medium text-accent-500">
-                        {item.company}
-                      </p>
-                    </div>
-                    <span className="mt-2 inline-flex items-center rounded-full border border-surface-1 bg-surface-1 px-4 py-1.5 text-sm text-muted-2 md:mt-0">
-                      {item.year}
-                    </span>
+            {/* Skills */}
+            <ScrollReveal delay={150}>
+              <div className="grid grid-cols-2 gap-x-6 gap-y-8">
+                {skillGroups.map((group) => (
+                  <div key={group.title}>
+                    <p className="mb-3 text-sm font-medium text-[var(--foreground)]">
+                      {group.title}
+                    </p>
+                    <ul className="space-y-1.5">
+                      {group.items.map((item) => (
+                        <li
+                          key={item}
+                          className="text-sm text-[var(--muted)] transition-colors duration-200 hover:text-[var(--accent-primary)]"
+                        >
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <ul className="space-y-2 text-muted">
-                    {item.description.map((desc, i) => (
-                      <li key={i} className="flex items-start">
-                        <span className="mr-3 mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60" />
-                        <span>{desc}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </ScrollReveal>
-            ))}
+                ))}
+              </div>
+            </ScrollReveal>
+
+            {/* CTA Buttons */}
+            <ScrollReveal delay={200}>
+              <div className="mt-12 flex flex-wrap gap-3">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center rounded-full bg-[var(--accent-primary)] px-7 py-3 text-sm font-medium text-white transition-opacity duration-300 hover:opacity-85"
+                >
+                  Contact Me
+                </Link>
+                <Link
+                  href="/projects"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--border-1)] px-7 py-3 text-sm text-[var(--foreground)] transition-all duration-300 hover:bg-[var(--surface-1)]"
+                >
+                  View Projects
+                  <span>→</span>
+                </Link>
+              </div>
+            </ScrollReveal>
+
           </div>
-        </section>
-
-        {/* FAQ Section */}
-        <section className="mb-20 pt-20">
-          <div className="gradient-divider mb-20" />
-          <ScrollReveal as="h2" className="mb-12 text-3xl font-bold md:text-4xl">
-            <span className="text-gradient">Any Questions?</span>
-          </ScrollReveal>
-          <ScrollReveal delay={100}>
-            <AccordionFAQ items={faqData} />
-          </ScrollReveal>
-        </section>
-
-        {/* CTA Section */}
-        <ScrollReveal delay={120}>
-          <CTASection />
-        </ScrollReveal>
+        </div>
       </div>
-    </PageTransition>
-  )
+    </section>
+  );
 }

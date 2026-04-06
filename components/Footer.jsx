@@ -1,45 +1,61 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { FaGithub, FaLinkedinIn, FaInstagram } from 'react-icons/fa'
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 
 const socialLinks = [
-  { href: 'https://github.com/chandraputra', label: 'GitHub', icon: FaGithub },
-  { href: 'https://www.linkedin.com/in/chandraputra', label: 'LinkedIn', icon: FaLinkedinIn },
-  { href: 'https://www.instagram.com/chandraputra', label: 'Instagram', icon: FaInstagram },
-]
+  {
+    label: "GitHub",
+    href: "https://github.com/chandraputra06",
+    icon: FaGithub,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/putu-chandra-putra",
+    icon: FaLinkedin,
+  },
+  {
+    label: "Instagram",
+    href: "https://instagram.com/chandrputraaa",
+    icon: FaInstagram,
+  },
+];
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear()
+  const pathname = usePathname();
+
+  const hideSocial =
+    pathname === "/about" || pathname === "/contact";
 
   return (
-    <footer className="relative">
-      <div className="gradient-divider" />
+    <footer className="border-t border-[var(--border-1)]">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-5 px-6 py-8 text-center md:px-10">
+        {!hideSocial && (
+          <div className="flex items-center justify-center gap-4">
+            {socialLinks.map((item) => {
+              const Icon = item.icon;
 
-      <div className="bg-background/60 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
-            <div className="flex items-center gap-4">
-              {socialLinks.map(({ href, label, icon: Icon }) => (
+              return (
                 <Link
-                  key={label}
-                  href={href}
-                  aria-label={label}
+                  key={item.label}
+                  href={item.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="group flex items-center justify-center rounded-xl border border-surface-1 bg-surface-1 p-2.5 text-lg text-muted transition-all duration-300 hover:-translate-y-1 hover:border-accent-500/30 hover:bg-accent-500/10 hover:text-accent-400 hover:shadow-lg hover:shadow-accent-500/10 cursor-pointer"
+                  aria-label={item.label}
+                  className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[var(--border-1)] text-[var(--muted)] transition-all duration-300 hover:border-[var(--border-2)] hover:bg-[var(--surface-1)] hover:text-[var(--foreground)]"
                 >
-                  <Icon />
+                  <Icon className="text-base" />
                 </Link>
-              ))}
-            </div>
-
-            <div className="text-center text-sm text-muted-2 md:text-right">
-              © {currentYear} Chandra Putra. All rights reserved.
-            </div>
+              );
+            })}
           </div>
-        </div>
+        )}
+
+        <p className="text-sm text-[var(--muted)]">
+          © 2026 Chandra Putra. Full Stack Developer & Freelance Creative.
+        </p>
       </div>
     </footer>
-  )
+  );
 }
