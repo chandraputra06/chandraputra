@@ -1,7 +1,10 @@
 import './globals.css'
+import 'lenis/dist/lenis.css'
 import { Poppins } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import PageTransition from '@/components/PageTransition'
+import SmoothScroll from '@/components/SmoothScroll'
 import ThemeProvider from '@/components/ThemeProvider'
 
 const poppins = Poppins({
@@ -25,9 +28,10 @@ export default function RootLayout({ children }) {
     <html lang="en" className={poppins.variable} suppressHydrationWarning>
       <body className={`${poppins.className} bg-background text-foreground antialiased`}>
         <ThemeProvider>
+          <SmoothScroll />
           <Navbar />
           <main className="min-h-screen">
-            {children}
+            <PageTransition>{children}</PageTransition>
           </main>
           <Footer />
         </ThemeProvider>

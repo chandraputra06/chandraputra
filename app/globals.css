@@ -259,6 +259,10 @@ body {
 /* ── Reduced motion ─────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .hi-card,
   .hi-glow,
   .hi-dots,
@@ -314,4 +318,112 @@ body {
 .btn-secondary:hover {
   background: var(--surface-1);
   border-color: var(--border-2);
+}
+
+/* ── Interactive Lanyard ─────────────────────────────── */
+.lanyard-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 460px;
+  z-index: 1;
+  touch-action: none;
+}
+.lanyard-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.lanyard-canvas canvas {
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: none;
+  cursor: grab;
+}
+.lanyard-hint {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border-1);
+  background: var(--glass-bg);
+  padding: 0.4rem 0.9rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--muted);
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+  animation: lanyardHint 3.4s ease-in-out infinite;
+}
+@keyframes lanyardHint {
+  0%, 100% { opacity: 0.55; transform: translate(-50%, 0); }
+  50%      { opacity: 1;    transform: translate(-50%, -3px); }
+}
+.lanyard-skeleton {
+  position: absolute; inset: 0;
+  display: flex; align-items: flex-start; justify-content: center;
+}
+.lanyard-skeleton span {
+  margin-top: 30%; height: 2.5rem; width: 2.5rem;
+  border-radius: 9999px;
+  border: 2px solid var(--border-1);
+  border-top-color: var(--accent-primary);
+  animation: lanyardSpin 0.9s linear infinite;
+}
+@keyframes lanyardSpin { to { transform: rotate(360deg); } }
+
+/* ── Interactive nametag backdrop (refined, iOS-style) ── */
+.nt-backdrop {
+  position: absolute; inset: 0; z-index: 0;
+  overflow: hidden; pointer-events: none;
+  --mx: 50%; --my: 30%;
+}
+.nt-backdrop > span { position: absolute; inset: 0; }
+
+/* soft mesh gradient that slowly breathes/drifts */
+.nt-aurora {
+  inset: -25%;
+  background:
+    radial-gradient(38% 40% at 30% 24%, color-mix(in oklab, var(--accent-primary) 42%, transparent), transparent 70%),
+    radial-gradient(44% 44% at 74% 30%, color-mix(in oklab, var(--accent-tertiary) 40%, transparent), transparent 72%),
+    radial-gradient(52% 50% at 52% 84%, color-mix(in oklab, var(--accent-secondary) 38%, transparent), transparent 74%);
+  filter: blur(44px) saturate(1.05);
+  opacity: 0.55;
+  transform: translate3d(0,0,0) scale(1.08);
+  animation: ntDrift 20s ease-in-out infinite alternate;
+}
+.nt-sheen {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--foreground) 6%, transparent), transparent 34%);
+  opacity: 0.6;
+}
+/* soft spotlight following the cursor */
+.nt-glow {
+  left: var(--mx); top: var(--my); inset: auto;
+  width: min(82%, 440px); aspect-ratio: 1; border-radius: 9999px;
+  background: radial-gradient(circle, var(--glow-accent-strong), transparent 66%);
+  filter: blur(44px); transform: translate(-50%, -50%);
+  transition: left 0.5s cubic-bezier(0.22,1,0.36,1), top 0.5s cubic-bezier(0.22,1,0.36,1);
+}
+/* fine grain to avoid banding */
+.nt-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 170px 170px; opacity: 0.045; mix-blend-mode: soft-light;
+}
+/* vignette for depth */
+.nt-vignette {
+  background: radial-gradient(120% 92% at 50% 16%, transparent 54%, color-mix(in oklab, var(--background) 65%, transparent));
+}
+@keyframes ntDrift {
+  0% { transform: translate3d(-2.5%, -1.5%, 0) scale(1.06); }
+  100% { transform: translate3d(2.5%, 2%, 0) scale(1.14); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nt-aurora { animation: none; }
+  .nt-glow { transition: none; }
 }

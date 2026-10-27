@@ -58,7 +58,7 @@ export default function HeroImage() {
         <div className="hi-shimmer" aria-hidden="true" />
 
         <Image
-          src="/images/pic-chandra-rm.png"
+          src="/images/pic-chandra.png"
           alt="Chandra Putra"
           width={420}
           height={520}

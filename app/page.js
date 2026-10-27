@@ -3,7 +3,6 @@
 import Link from "next/link";
 import ProjectCard from "@/components/ProjectCard";
 import AccordionFAQ from "@/components/AccordionFAQ";
-import PageTransition from "@/components/PageTransition";
 import TechStackSection from "@/components/TechStackSection";
 import ScrollReveal from "@/components/ScrollReveal";
 import CertificationsSection from "@/components/CertificationsSection";
@@ -13,7 +12,6 @@ import HeroImage from "@/components/HeroImage";
 
 export default function Home() {
   return (
-    <PageTransition>
       <div className="relative min-h-screen bg-background overflow-hidden">
         {/* Decorative background elements */}
         <div className="pointer-events-none absolute inset-0">
@@ -132,6 +130,5 @@ export default function Home() {
           </ScrollReveal>
         </div>
       </div>
-    </PageTransition>
   );
 }

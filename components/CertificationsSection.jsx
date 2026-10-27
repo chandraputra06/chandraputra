@@ -2,6 +2,7 @@
 
 import { memo, useEffect, useState } from 'react'
 import Image from 'next/image'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import ScrollReveal from '@/components/ScrollReveal'
 import { certifications } from '@/data/certifications'
 import { FaChevronLeft, FaChevronRight, FaTimes } from 'react-icons/fa'
@@ -52,17 +53,33 @@ function LightboxIconButton({ onClick, children, label, className = '' }) {
 
 function CertificateLightbox({ items, activeIndex, onClose, onPrev, onNext }) {
   const activeItem = items[activeIndex]
+  const shouldReduceMotion = useReducedMotion()
   if (!activeItem) return null
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 px-4 py-6 backdrop-blur-sm">
+    <motion.div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 px-4 py-6 backdrop-blur-sm"
+      initial={shouldReduceMotion ? false : { opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={shouldReduceMotion ? undefined : { opacity: 0 }}
+      transition={{ duration: shouldReduceMotion ? 0 : 0.2 }}
+    >
       <div
         className="absolute inset-0"
         onClick={onClose}
         aria-hidden="true"
       />
 
-      <div className="relative z-[101] w-full max-w-6xl">
+      <motion.div
+        className="relative z-[101] w-full max-w-6xl"
+        initial={shouldReduceMotion ? false : { opacity: 0, y: 12, scale: 0.99 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={shouldReduceMotion ? undefined : { opacity: 0, y: 8, scale: 0.99 }}
+        transition={{
+          duration: shouldReduceMotion ? 0 : 0.24,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+      >
         <div className="mb-4 hidden items-center justify-between lg:flex">
           <div className="hidden sm:block" />
 
@@ -81,52 +98,64 @@ function CertificateLightbox({ items, activeIndex, onClose, onPrev, onNext }) {
           </div>
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-[1.35fr_0.65fr]">
-          <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-white p-3 shadow-2xl">
-            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[1.25rem] bg-slate-100">
-              <Image
-                src={activeItem.image}
-                alt={activeItem.title}
-                fill
-                className="object-contain"
-              />
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={activeItem.id}
+            className="grid gap-5 lg:grid-cols-[1.35fr_0.65fr]"
+            initial={shouldReduceMotion ? false : { opacity: 0, x: 16 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={shouldReduceMotion ? undefined : { opacity: 0, x: -16 }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.2,
+              ease: 'easeOut',
+            }}
+          >
+            <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-white p-3 shadow-2xl">
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[1.25rem] bg-slate-100">
+                <Image
+                  src={activeItem.image}
+                  alt={activeItem.title}
+                  fill
+                  className="object-contain"
+                />
+              </div>
             </div>
-          </div>
 
-          <div className="rounded-[1.75rem] border border-white/10 bg-white/10 p-6 text-white backdrop-blur-md">
-            <p className="text-sm font-medium uppercase tracking-[0.18em] text-white/70">
-              Certificate Details
-            </p>
+            <div className="rounded-[1.75rem] border border-white/10 bg-white/10 p-6 text-white backdrop-blur-md">
+              <p className="text-sm font-medium uppercase tracking-[0.18em] text-white/70">
+                Certificate Details
+              </p>
 
-            <h3 className="mt-4 text-2xl font-semibold leading-tight">
-              {activeItem.title}
-            </h3>
+              <h3 className="mt-4 text-2xl font-semibold leading-tight">
+                {activeItem.title}
+              </h3>
 
-            <p className="mt-3 text-sm text-white/75">
-              {activeItem.issuer} • {activeItem.year}
-            </p>
+              <p className="mt-3 text-sm text-white/75">
+                {activeItem.issuer} • {activeItem.year}
+              </p>
 
-            <p className="mt-6 text-sm leading-8 text-white/80">
-              {activeItem.description}
-            </p>
+              <p className="mt-6 text-sm leading-8 text-white/80">
+                {activeItem.description}
+              </p>
 
-            <div className="mt-8 flex items-center gap-3 lg:hidden">
-              <LightboxIconButton onClick={onPrev} label="Previous certificate">
-                <FaChevronLeft />
-              </LightboxIconButton>
+              <div className="mt-8 flex items-center gap-3 lg:hidden">
+                <LightboxIconButton onClick={onPrev} label="Previous certificate">
+                  <FaChevronLeft />
+                </LightboxIconButton>
 
-              <LightboxIconButton onClick={onNext} label="Next certificate">
-                <FaChevronRight />
-              </LightboxIconButton>
+                <LightboxIconButton onClick={onNext} label="Next certificate">
+                  <FaChevronRight />
+                </LightboxIconButton>
 
-              <LightboxIconButton onClick={onClose} label="Close preview">
-                <FaTimes />
-              </LightboxIconButton>
+                <LightboxIconButton onClick={onClose} label="Close preview">
+                  <FaTimes />
+                </LightboxIconButton>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          </motion.div>
+        </AnimatePresence>
+        </motion.div>
+      </motion.div>
   )
 }
 
@@ -201,7 +230,8 @@ function CertificationsSection() {
         </div>
       </section>
 
-      {activeIndex !== null && (
+      <AnimatePresence>
+        {activeIndex !== null && (
         <CertificateLightbox
           items={certifications}
           activeIndex={activeIndex}
@@ -209,7 +239,8 @@ function CertificationsSection() {
           onPrev={showPrev}
           onNext={showNext}
         />
-      )}
+        )}
+      </AnimatePresence>
     </>
   )
 }
