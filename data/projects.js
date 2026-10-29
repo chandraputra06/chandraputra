@@ -4,19 +4,21 @@ export const projects = [
     slug: 'grid-id',
     title: 'GRID.ID',
     shortDescription:
-      'Platform pendukung keputusan berbasis AI untuk pemeliharaan prediktif infrastruktur kelistrikan, memadukan laporan warga, deteksi kerusakan YOLOv8, dan monitoring perangkat IoT dalam satu dashboard.',
+      'An AI-powered decision-support platform for predictive maintenance of electrical infrastructure, combining citizen reports, YOLOv8 defect detection, and IoT device monitoring in a single dashboard.',
     description:
-      'GRID.ID adalah sistem deteksi dini dan pemeliharaan prediktif untuk infrastruktur kelistrikan seperti tiang, kabel, gardu, dan isolator. Warga dapat melaporkan kondisi berisiko melalui foto yang langsung dianalisis model AI untuk mengklasifikasi jenis kerusakan beserta tingkat keparahannya, lalu sistem menghitung skor risiko per aset untuk memprioritaskan inspeksi. Alur kerjanya mencakup penugasan petugas lapangan, input inspeksi lapangan, hingga verifikasi supervisor, serta terintegrasi dengan perangkat IoT untuk monitoring panel secara real-time, dilengkapi peta interaktif, peringatan otomatis untuk area kritis, dan portal B2B multi-organisasi.',
+      'GRID.ID is an early-detection and predictive-maintenance system for electrical infrastructure such as poles, cables, substations, and insulators. Citizens can report at-risk conditions through photos that are instantly analyzed by an AI model to classify the type of defect and its severity, after which the system computes a per-asset risk score to prioritize inspections. The workflow spans field-officer assignment, on-site inspection input, and supervisor verification, and integrates with IoT devices for real-time panel monitoring, complete with interactive maps, automated alerts for critical areas, and a multi-organization B2B portal.',
     studyCase:
-      'Gangguan listrik akibat infrastruktur rusak sering terlambat ditangani karena pemantauan yang masih manual dan terbatas. GRID.ID menjawab masalah ini dengan menggabungkan tiga sumber data, yaitu laporan partisipatif warga, inspeksi lapangan petugas, dan telemetri perangkat IoT, yang seluruhnya dinilai otomatis oleh AI dan sistem skor risiko sehingga penanganan dapat diprioritaskan sebelum terjadi kegagalan. Hasilnya adalah alur end-to-end dari deteksi dini hingga tindak lanjut, lengkap dengan peringatan dini bagi warga di sekitar area kritis dan dashboard yang disesuaikan untuk tiap peran pengguna.',
-    client: 'PLN Ice Competition',
+      'Power disruptions caused by damaged infrastructure are often handled too late because monitoring is still manual and limited. GRID.ID addresses this by combining three data sources, namely participatory citizen reports, field-officer inspections, and IoT device telemetry, all assessed automatically by AI and a risk-scoring system so that handling can be prioritized before failures occur. The result is an end-to-end flow from early detection to follow-up, complete with early warnings for citizens near critical areas and dashboards tailored to each user role.',
+    client: 'Samblung Mas House',
     year: '2026',
-    roles: ['Website Development', 'UI Implementation', 'Deployment'],
-    technologies: ['Hostinger Website Builder', 'Hostinger', 'GitHub'],
+    roles: ['Fullstack Development', 'UI Implementation', 'Deployment', 'AI Model Integration',],
+    technologies: ['Next.js', 'Tailwind CSS', 'Node.js', 'Express', 'Supabase', 'PostgreSQL', 'YOLOv8', 'Firebase', 'Railway', 'Hostinger', 'GitHub'],
     thumbnail: '/images/projects/grid.id.png',
-    gallery: [],
+    gallery: [
+      '/images/projects/grid-id/',
+    ],
     projectUrl: 'https://gridid.io',
-    githubUrl: 'https://github.com/chandraputra06/grid-id.git',
+    githubUrl: 'https://github.com/chandraputra06/grid-id.git', 
     featured: true,
   },
   {
