@@ -121,6 +121,7 @@ export const projects = [
     year: '2026',
     roles: ['Fullstack Development', 'UI Implementation', 'Deployment'],
     technologies: ['Laravel 13', 'Tailwind CSS', 'Hostinger', 'GitHub'],
+    thumbnail: '/images/projects/sipil-saku.png',
     gallery: [],
     projectUrl: 'https://sipilsaku.site',
     githubUrl: '',
