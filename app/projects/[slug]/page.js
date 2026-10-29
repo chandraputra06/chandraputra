@@ -23,6 +23,8 @@ export default async function ProjectDetailPage({ params }) {
     notFound()
   }
 
+  const hasGallery = project.gallery?.length > 0
+
   return (
     <section className="relative overflow-hidden py-24 md:py-32">
       <div className="pointer-events-none absolute inset-0">
@@ -40,7 +42,11 @@ export default async function ProjectDetailPage({ params }) {
           </Link>
         </div>
 
-        <div className="grid gap-14 lg:grid-cols-[0.78fr_1.22fr]">
+        <div
+          className={`grid gap-14 ${
+            hasGallery ? 'lg:grid-cols-[0.78fr_1.22fr]' : ''
+          }`}
+        >
           <div>
             <h1 className="mt-4 text-4xl font-semibold leading-tight text-[var(--foreground)] md:text-5xl lg:text-6xl">
               {project.title}
@@ -124,23 +130,25 @@ export default async function ProjectDetailPage({ params }) {
             </div>
           </div>
 
-          <div className="space-y-6">
-            {project.gallery.map((image, index) => (
-              <div
-                key={index}
-                className="overflow-hidden rounded-[1.75rem] border border-[var(--border-1)] bg-[var(--surface-1)]"
-              >
-                <div className="relative aspect-[16/10] w-full">
-                  <Image
-                    src={image}
-                    alt={`${project.title} preview ${index + 1}`}
-                    fill
-                    className="object-cover"
-                  />
+          {hasGallery && (
+            <div className="space-y-6">
+              {project.gallery.map((image, index) => (
+                <div
+                  key={image}
+                  className="overflow-hidden rounded-[1.75rem] border border-[var(--border-1)] bg-[var(--surface-1)]"
+                >
+                  <div className="relative aspect-[16/10] w-full">
+                    <Image
+                      src={image}
+                      alt={`${project.title} preview ${index + 1}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>

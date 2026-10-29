@@ -1,6 +1,66 @@
 export const projects = [
   {
     id: 1,
+    slug: 'grid-id',
+    title: 'GRID.ID',
+    shortDescription:
+      'Platform pendukung keputusan berbasis AI untuk pemeliharaan prediktif infrastruktur kelistrikan, memadukan laporan warga, deteksi kerusakan YOLOv8, dan monitoring perangkat IoT dalam satu dashboard.',
+    description:
+      'GRID.ID adalah sistem deteksi dini dan pemeliharaan prediktif untuk infrastruktur kelistrikan seperti tiang, kabel, gardu, dan isolator. Warga dapat melaporkan kondisi berisiko melalui foto yang langsung dianalisis model AI untuk mengklasifikasi jenis kerusakan beserta tingkat keparahannya, lalu sistem menghitung skor risiko per aset untuk memprioritaskan inspeksi. Alur kerjanya mencakup penugasan petugas lapangan, input inspeksi lapangan, hingga verifikasi supervisor, serta terintegrasi dengan perangkat IoT untuk monitoring panel secara real-time, dilengkapi peta interaktif, peringatan otomatis untuk area kritis, dan portal B2B multi-organisasi.',
+    studyCase:
+      'Gangguan listrik akibat infrastruktur rusak sering terlambat ditangani karena pemantauan yang masih manual dan terbatas. GRID.ID menjawab masalah ini dengan menggabungkan tiga sumber data, yaitu laporan partisipatif warga, inspeksi lapangan petugas, dan telemetri perangkat IoT, yang seluruhnya dinilai otomatis oleh AI dan sistem skor risiko sehingga penanganan dapat diprioritaskan sebelum terjadi kegagalan. Hasilnya adalah alur end-to-end dari deteksi dini hingga tindak lanjut, lengkap dengan peringatan dini bagi warga di sekitar area kritis dan dashboard yang disesuaikan untuk tiap peran pengguna.',
+    client: 'PLN Ice Competition',
+    year: '2026',
+    roles: ['Website Development', 'UI Implementation', 'Deployment'],
+    technologies: ['Hostinger Website Builder', 'Hostinger', 'GitHub'],
+    thumbnail: '/images/projects/grid.id.png',
+    gallery: [],
+    projectUrl: 'https://gridid.io',
+    githubUrl: 'https://github.com/chandraputra06/grid-id.git',
+    featured: true,
+  },
+  {
+    id: 2,
+    slug: 'eco-sphere',
+    title: 'Eco Sphere',
+    shortDescription:
+      'A community-based waste management web platform for Bali, connecting citizens with environmental communities, waste management organizations, and collectors through AI-powered waste reporting.',
+    description:
+      'Eco-Sphere is a full-stack web application that helps citizens scan and report waste, then routes it to the right party: environmental communities and waste management organizations for large volumes, and Grapari for e-waste. Each role (Citizen, Collector, Manager, CSR, Admin) has its own dashboard with statistics, charts, and an interactive Leaflet map to monitor the reports assigned to their organization. It features role-based authentication, user profiles with photo upload, points-and-leaderboard gamification, and admin moderation.',
+    studyCase:
+      'Bali faces a complex waste management problem, where citizen reports often fail to reach the right party and lack transparency in how they are handled. Eco-Sphere addresses this with a single reporting flow that uses AI to classify the type and volume of waste, then routes it to the appropriate community, waste manager, or e-waste point. Centralizing data per organization ensures each party only sees relevant reports, while gamification drives sustained citizen participation.',
+    client: 'Competition Project (Personal)',
+    year: '2026',
+    roles: ['Full-Stack Development', 'UI/UX Implementation', 'Backend & API Development', 'Database Design', 'Deployment'],
+    technologies: ['React', 'Vite', 'Tailwind CSS', 'React Router', 'Leaflet', 'Node.js', 'Express', 'Prisma', 'PostgreSQL', 'JWT', 'Neon', 'Vercel', 'GitHub'],
+    thumbnail: '/images/projects/eco-sphere.png',
+    gallery: [],
+    projectUrl: 'https://eco-sphere-id.vercel.app',
+    githubUrl: '',
+    featured: true,
+  },
+  {
+    id: 3,
+    slug: 'paw-sphere',
+    title: 'Paw Sphere',
+    shortDescription:
+      'An integrated multi-clinic web platform connecting pet owners with veterinarians and clinics through AI triage, teleconsultation, and clinic services.',
+    description:
+      'PawSphere is a web-based, multi-clinic platform that unifies pet health and care services into a single ecosystem. It connects three user roles (pet owners, veterinarians, and clinics) across a full journey: AI-based symptom triage (AI Diagnosis), location-based emergency reporting (Paw Alert), nearby clinic search (Clinic Discovery), two-way veterinary teleconsultation (Vet Connect), digital prescriptions (E-Prescription), and clinic services such as hospitalization and pet boarding, complemented by a marketplace and adoption feature. Built on a three-tier architecture (React, Express.js, MySQL with Prisma) and secured with JWT role-based access control, PawSphere is live on cloud infrastructure.',
+    studyCase:
+      'Problem: Pet healthcare in Indonesia is fragmented, forcing owners to jump between separate apps to check symptoms, find a clinic, consult a vet, get a prescription, and buy medicine. This slows treatment, leaves emergencies without a structured reporting channel, and makes health history hard to track, while dozens of clinics operate in isolation. Solution: As the lead developer, I designed and built a single multi-clinic platform that links owners to many clinics and vets in one flow, from AI triage and teleconsultation to e-prescription and clinic bookings, backed by a verified network of vets and clinics. Outcome: A fully functional web app deployed on Railway and Vercel that passed black-box testing and User Acceptance Testing across its core modules, was further validated through a System Usability Scale (SUS) survey, and became the basis for a student entrepreneurship proposal (P2MW 2026).',
+    client: 'Universitas Udayana (Capstone Project)',
+    year: '2026',
+    roles: ['Project Lead', 'Full-Stack Development', 'UI Implementation', 'Deployment'],
+    technologies: ['React', 'Tailwind CSS', 'Node.js', 'Express.js', 'MySQL', 'Prisma ORM', 'JWT', 'Google Gemini API', 'Vercel', 'Railway', 'GitHub'],
+    thumbnail: '/images/projects/paw-sphere.png',
+    gallery: [],
+    projectUrl: 'https://pawsphere-id.vercel.app',
+    githubUrl: '',
+    featured: true,
+  },
+  {
+    id: 4,
     slug: 'samblung-mas-house',
     title: 'Samblung Mas House',
     shortDescription:
@@ -26,7 +86,72 @@ export const projects = [
     featured: true,
   },
   {
-    id: 2,
+    id: 5,
+    slug: 'tria-maria',
+    title: 'Tria Maria',
+    shortDescription:
+      'Aesthetic beachfront accommodation website for Tria Maria Cottage located in Ngurbloat Beach, Southeast Maluku.',
+    description:
+      'Developed a professional, high-performing website for Tria Maria Cottage, featuring modern UI implementation, responsive mobile layouts, room listings (Standard & Superior), comprehensive amenities, and optimized local SEO to enhance online visibility and direct bookings.',
+    studyCase:
+      'The project focused on transforming standard website templates into an authentic, tropical aesthetic that reflects the warm hospitality and stunning coastal views of Ngurbloat Beach. Key challenges included structuring accurate room details, integrating local service offerings, implementing SEO optimizations with AIOSEO, and configuring Google Search Console for rapid indexing. The solution involved a combination of custom design elements, responsive layouts, and SEO best practices to ensure the website not only looked appealing but also performed well in search engine rankings, ultimately driving more traffic and bookings for Tria Maria Cottage.',
+    client: 'Tria Maria Cottage',
+    year: '2026',
+    roles: ['Website Development', 'UI Implementation', 'SEO & Deployment'],
+    technologies: ['Hostinger Website Builder', 'Elementor', 'WordPress', 'Hostinger', 'AIOSEO', 'Google Search Console'],
+    thumbnail: '/images/projects/tria-maria.png',
+    gallery: [],
+    projectUrl: 'https://triamariangurbloat.com',
+    githubUrl: '',
+    featured: true,
+  },
+  {
+    id: 6,
+    slug: 'sipil-saku',
+    title: 'Sipil Saku',
+    shortDescription:
+      'A practical, web-based digital directory and platform designed for civil engineering students and practitioners to easily access learning modules, construction standards, and material references in one place.',
+    description:
+      'Sipil Saku is a web application specifically engineered as a productivity-boosting and educational platform for the civil engineering community. The website provides content management features, course modules, e-books, and a secure, efficient backend management system for administrators to organize civil engineering educational content seamlessly.',
+    studyCase:
+      'Civil engineering students and practitioners frequently require rapid access to technical literature, modules, and on-site learning materials. The challenge lies in creating a centralized platform that is responsive, accessible anytime, and equipped with a reliable content management system (CMS) for administrators to update learning materials periodically without performance bottlenecks. The solution was to develop a web-based platform that consolidates all necessary resources, ensuring that users can quickly find and utilize the information they need for both academic and professional purposes.',
+    client: 'Civil Engineering Students',
+    year: '2026',
+    roles: ['Fullstack Development', 'UI Implementation', 'Deployment'],
+    technologies: ['Laravel 13', 'Tailwind CSS', 'Hostinger', 'GitHub'],
+    gallery: [],
+    projectUrl: 'https://sipilsaku.site',
+    githubUrl: '',
+    featured: true,
+  },
+  {
+    id: 7,
+    slug: 'website-orinimo',
+    title: 'Orinimo Official Website',
+    shortDescription:
+      'A product-focused website built to help users browse digital products, explore details, and reach the brand more easily.',
+    description:
+      'Orinimo Official Website is a modern web platform designed to present digital products in a clear and accessible way. It helps users browse categories, review product details, and connect with the business anytime.',
+    studyCase:
+      'The project was developed to strengthen the online presence of Orinimo and provide a better browsing experience for customers looking for digital product information.',
+    client: 'Orinimo',
+    year: '2026',
+    roles: ['Frontend Development', 'UI Development', 'Deployment'],
+    technologies: ['React.js', 'Tailwind CSS', 'Hostinger', 'GitHub'],
+    thumbnail: '/images/projects/orinimo-web.png',
+    gallery: [
+      '/images/projects/orinimo-website/orinimo-web1.jpeg',
+      '/images/projects/orinimo-website/orinimo-web2.jpeg',
+      '/images/projects/orinimo-website/orinimo-web3.jpeg',
+      '/images/projects/orinimo-website/orinimo-web4.jpeg',
+      '/images/projects/orinimo-website/orinimo-web5.jpeg',
+    ],
+    projectUrl: 'https://orinimo.store',
+    githubUrl: '',
+    featured: true,
+  },
+  {
+    id: 8,
     slug: 'sistem-rekapan-orinimo',
     title: 'Orinimo Recapitulation System',
     shortDescription:
@@ -59,103 +184,6 @@ export const projects = [
       '/images/projects/orinimo-recap/recap5.jpeg',
     ],
     projectUrl: 'https://recap.orinimo.store',
-    githubUrl: '',
-    featured: true,
-  },
-  {
-    id: 3,
-    slug: 'website-orinimo',
-    title: 'Orinimo Official Website',
-    shortDescription:
-      'A product-focused website built to help users browse digital products, explore details, and reach the brand more easily.',
-    description:
-      'Orinimo Official Website is a modern web platform designed to present digital products in a clear and accessible way. It helps users browse categories, review product details, and connect with the business anytime.',
-    studyCase:
-      'The project was developed to strengthen the online presence of Orinimo and provide a better browsing experience for customers looking for digital product information.',
-    client: 'Orinimo',
-    year: '2026',
-    roles: ['Frontend Development', 'UI Development', 'Deployment'],
-    technologies: ['React.js', 'Tailwind CSS', 'Hostinger', 'GitHub'],
-    thumbnail: '/images/projects/orinimo-web.png',
-    gallery: [
-      '/images/projects/orinimo-website/orinimo-web1.jpeg',
-      '/images/projects/orinimo-website/orinimo-web2.jpeg',
-      '/images/projects/orinimo-website/orinimo-web3.jpeg',
-      '/images/projects/orinimo-website/orinimo-web4.jpeg',
-      '/images/projects/orinimo-website/orinimo-web5.jpeg',
-    ],
-    projectUrl: 'https://orinimo.store',
-    githubUrl: '',
-    featured: true,
-  },
-  {
-    id: 4,
-    slug: 'website-fetch-otp-disney',
-    title: 'Disney OTP Fetching System',
-    shortDescription:
-      'A dedicated web-based system for fetching Disney OTP codes quickly, securely, and in real time.',
-    description:
-      'Disney OTP Fetching System is a web-based tool built to simplify OTP retrieval requests. The system provides fast access to OTP codes, supports real-time updates, and helps manage requests in a more practical workflow.',
-    studyCase:
-      'This project was created to make OTP fetching more efficient by reducing delays, improving monitoring, and providing a more structured request process through a dedicated interface.',
-    client: 'Orinimo',
-    year: '2026',
-    roles: ['Fullstack Development', 'System Integration', 'Admin Interface Development'],
-    technologies: [
-      'Laravel 13',
-      'PHP 8.3',
-      'MySQL',
-      'Blade',
-      'Tailwind CSS',
-      'JavaScript',
-      'Font Awesome',
-      'Gmail API',
-      'Google OAuth 2.0',
-      'google/apiclient',
-      'Vite',
-      'Hostinger',
-      'GitHub',
-    ],
-    thumbnail: '/images/projects/otpdisney-nimo.png',
-    gallery: [
-      '/images/projects/otpdisney-nimo/otp-nimo1.jpeg',
-      '/images/projects/otpdisney-nimo/otp-nimo2.jpeg',
-    ],
-    projectUrl: 'https://otpdisney.orinimo.store',
-    githubUrl: '',
-    featured: true,
-  },
-  {
-    id: 5,
-    slug: 'chandra-nova',
-    title: 'Chandra Nova',
-    shortDescription:
-      'A service website built to showcase premium website packages, portfolio highlights, and conversion-focused digital offerings.',
-    description:
-      'Chandra Nova is a website built to present digital services in a professional and premium way. It highlights service packages, featured work, and business-focused solutions designed to strengthen brand visibility and conversions.',
-    studyCase:
-      'This project was developed to create a strong service website that communicates value clearly, presents portfolio work effectively, and supports lead generation through a modern interface.',
-    client: 'Personal Brand',
-    year: '2026',
-    roles: ['Frontend Development', 'UI Development', 'Deployment'],
-    technologies: [
-      'Next.js',
-      'React',
-      'Tailwind CSS',
-      'JavaScript',
-      'JSX',
-      'Hostinger',
-      'GitHub',
-    ],
-    thumbnail: '/images/projects/chandarnova.png',
-    gallery: [
-      '/images/projects/chandranova-website/cn1.jpeg',
-      '/images/projects/chandranova-website/cn2.jpeg',
-      '/images/projects/chandranova-website/cn3.jpeg',
-      '/images/projects/chandranova-website/cn4.jpeg',
-      '/images/projects/chandranova-website/cn5.jpeg',
-    ],
-    projectUrl: 'https://chandranova.com',
     githubUrl: '',
     featured: true,
   },
