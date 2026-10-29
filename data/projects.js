@@ -9,7 +9,7 @@ export const projects = [
       'GRID.ID is an early-detection and predictive-maintenance system for electrical infrastructure such as poles, cables, substations, and insulators. Citizens can report at-risk conditions through photos that are instantly analyzed by an AI model to classify the type of defect and its severity, after which the system computes a per-asset risk score to prioritize inspections. The workflow spans field-officer assignment, on-site inspection input, and supervisor verification, and integrates with IoT devices for real-time panel monitoring, complete with interactive maps, automated alerts for critical areas, and a multi-organization B2B portal.',
     studyCase:
       'Power disruptions caused by damaged infrastructure are often handled too late because monitoring is still manual and limited. GRID.ID addresses this by combining three data sources, namely participatory citizen reports, field-officer inspections, and IoT device telemetry, all assessed automatically by AI and a risk-scoring system so that handling can be prioritized before failures occur. The result is an end-to-end flow from early detection to follow-up, complete with early warnings for citizens near critical areas and dashboards tailored to each user role.',
-    client: 'Samblung Mas House',
+    client: 'PLN Ice Competition Project',
     year: '2026',
     roles: ['Fullstack Development', 'UI Implementation', 'Deployment', 'AI Model Integration',],
     technologies: ['Next.js', 'Tailwind CSS', 'Node.js', 'Express', 'Supabase', 'PostgreSQL', 'YOLOv8', 'Firebase', 'Railway', 'Hostinger', 'GitHub'],
